@@ -1,120 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";  // Import Link component
 
 function Login() {
   return (
     <>
-      <div className="lightdark-switch">
-        <span className="switch-btn" id="btnSwitch">
-          <img
-            src="/assets/images/icon/moon.svg"
-            alt="light-dark-switchbtn"
-            className="swtich-icon"
-          />
-        </span>
-      </div>
-
-      <header className="header-section bg-color-3">
-        <div className="header-bottom">
-          <div className="container">
-            <div className="header-wrapper">
-              <div className="logo">
-                <Link to="/">
-                  <img className="dark" src="/assets/images/logo/logo.png" alt="logo" />
-                </Link>
-              </div>
-              <div className="menu-area">
-                <ul className="menu menu--style1">
-                  <li className="megamenu">
-                    <a href="#">Demos</a>
-                    {/* Keeping demo previews as <a> since they are static previews */}
-                    <ul className="submenu">
-                      <li>
-                        <div className="home-showcase">
-                          <div className="row g-4 row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-                            {/* Example Demo Item */}
-                            <div className="col">
-                              <div className="home-showcase__item">
-                                <div className="home-showcase__image">
-                                  <img src="/assets/images/demo/1.png" alt="home-showcase" />
-                                  <div className="home-showcase__buttons">
-                                    <a
-                                      href="/index6a08.html?theme=light"
-                                      className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"
-                                    >
-                                      <span>Preview</span>
-                                    </a>
-                                  </div>
-                                </div>
-                                <h3 className="home-showcase__title">
-                                  <a href="/index6a08.html?theme=light">Stock Trading</a>
-                                </h3>
-                              </div>
-                            </div>
-                            {/* Repeat similar blocks for other demos */}
-                          </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </li>
-
-                  <li>
-                    <a href="#">Services</a>
-                    <ul className="submenu">
-                      <li><Link to="/services">Services</Link></li>
-                      <li><Link to="/service-details">Services Details</Link></li>
-                    </ul>
-                  </li>
-
-                  <li>
-                    <a href="#">About</a>
-                    <ul className="submenu">
-                      <li><Link to="/about">About Us</Link></li>
-                      <li><Link to="/price">Price</Link></li>
-                      <li><Link to="/team">Team</Link></li>
-                      <li><Link to="/team-2">Team 2</Link></li>
-                      <li><Link to="/team-details">Team Details</Link></li>
-                    </ul>
-                  </li>
-
-                  <li>
-                    <a href="#">Pages</a>
-                    <ul className="submenu">
-                      <li><Link to="/blogs">Blogs</Link></li>
-                      <li><Link to="/blog-sidebar">Blog - Side Bar</Link></li>
-                      <li><Link to="/blog-details">Blog Details</Link></li>
-                      <li><Link to="/signup">Sign Up</Link></li>
-                      <li><Link to="/signup-2">Sign Up 2</Link></li>
-                      <li><Link to="/signin">Sign In</Link></li>
-                      <li><Link to="/signin-2">Sign In 2</Link></li>
-                      <li><Link to="/forgot-pass">Reset Password</Link></li>
-                      <li><Link to="/forgot-pass-2">Reset Password 2</Link></li>
-                      <li><Link to="/404">404 Error</Link></li>
-                    </ul>
-                  </li>
-
-                  <li>
-                    <Link to="/contact">Contact Us</Link>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="header-action">
-                <div className="menu-area">
-                  <div className="header-btn">
-                    <Link to="/register" className="trk-btn trk-btn--border trk-btn--primary">
-                      <span>Join Now</span>
-                    </Link>
-                  </div>
-
-                  <div className="header-bar d-lg-none home1">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                </div>
-              </div>
-
+      {/* Login-specific header */}
+      <header className="login-header">
+        <div className="container">
+          <div className="header-wrapper">
+            <div className="logo">
+              {/* Removed the Link component around the logo */}
+              
             </div>
           </div>
         </div>
@@ -122,7 +18,9 @@ function Login() {
 
       <section
         className="page-header bg--cover"
-        style={{ backgroundImage: "url(/assets/images/header/1.png)" }}
+        style={{ backgroundImage: "url(/assets/images/header/1.png)", marginTop: "70px" 
+
+        }}
       >
         <div className="container">
           <div className="page-header__content">
@@ -130,9 +28,8 @@ function Login() {
             <nav aria-label="breadcrumb">
               <ol className="breadcrumb mb-0">
                 <li className="breadcrumb-item">
-                        <Link to="/">Home</Link> / <span style={{ color: "white" }}>Login</span>
-                                </li>
-                
+                  <Link to="/">Home</Link> / <span style={{ color: "white" }}>Login</span>
+                </li>
               </ol>
             </nav>
           </div>

@@ -102,6 +102,7 @@ Tags: Crypto, Forex, and Stocks Trading Business
 
 .about--style3 .about__content h2, .about__content--style2 .about__content-inner h2, .about__content--style2 .about__content-details h5, .about__content-inner h2, .roadmap--style1 .roadmap__item-header h3, .accordion__button, .comment__action a, .counter__item-inner p, .service-details__team h5, .error__content h2, .tags--style2 ul li a, .tags ul li a, .cta__subscribe h2, .blog-details__segment-content h5, .blog-details__content h3, .blog__content h5, .feature--style1 .feature__item-content h6, .floating-content__item--style2 p, .text-btn, .account__check-forgot a, .contact__social h3, .banner--style5 .banner__content-heading, .banner--style4 .banner__content h1, .banner--style3 .banner__counter-item p, .banner__content-heading, .page-header__content h2, .section-header h2 {
   text-transform: capitalize;
+  
 }
 
 /*=========<<Flex property extends end>>=========*/
