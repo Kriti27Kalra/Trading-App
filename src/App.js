@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, useLocation } from "react-router-dom";
+import Header from "./front/Header";
+import Footer from "./front/Footer";
+import Home from "./front/Home";
+import Login from "./front/Login"; // Ensure the correct import for SignIn
+import Register from "./front/Register"; // Import Register component
 
 function App() {
+  const location = useLocation();
+
+  const hideHeader = [ "/login", "/register"].includes(location.pathname); // Added '/register' to hide header on that route
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {!hideHeader && <Header />}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} /> {/* Added route for Register */}
+      </Routes>
+
+      <Footer />
     </div>
   );
 }
