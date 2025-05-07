@@ -73,9 +73,7 @@ function Login() {
                         <div className="form-pass">
                           <label htmlFor="account-pass" className="form-label">Password</label>
                           <input type="password" className="form-control showhide-pass" id="account-pass" placeholder="Password" required />
-                          <button type="button" id="btnToggle" className="form-pass__toggle">
-                            <i id="eyeIcon" className="fa fa-eye"></i>
-                          </button>
+                          
                         </div>
                       </div>
                     </div>

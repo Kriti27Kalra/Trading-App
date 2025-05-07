@@ -4,8 +4,6 @@ import UserDashboardLayout from "./Layouts/UserDashboardLayout";
 import AdminDashboardLayout from "./Layouts/AdminDashboardLayout";
 
 
-import Header from "./front/Header";
-import Footer from "./front/Footer";
 import Home from "./front/Home";
 import Login from "./front/Login";
 import Register from "./front/Register";
@@ -29,7 +27,7 @@ function App() {
 
   return (
     <div>
-      {!shouldHideHeader && <Header />}
+      
 
       <Routes>
         {/* Front layout routes */}
@@ -50,7 +48,7 @@ function App() {
         </Route>
       </Routes>
 
-      {!shouldHideFooter && <Footer />}
+
     </div>
   );
 }

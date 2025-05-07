@@ -8,7 +8,7 @@ const AdminDashboardLayout = () => {
   return (
     <div className="d-flex">
     {/* Sidebar */}
-    <Sidebar />
+    <Sidebar role="admin" /> 
 
       {/* Main Content Area */}
       <div className="main-content flex-grow-1 d-flex flex-column">

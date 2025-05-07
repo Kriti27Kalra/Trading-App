@@ -6,7 +6,7 @@ function UserDashboardLayout() {
   return (
     <div className="d-flex">
     {/* Sidebar */}
-    <Sidebar />
+    <Sidebar role="user" />
     
 
       {/* Main content */}

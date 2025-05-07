@@ -1,16 +1,64 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted', { firstName, lastName, email, password, confirmPassword });
+    setError('');
+  
+    // Basic frontend validation
+    if (!firstName.trim()) {
+      alert('First name is required');
+      return;
+    }
+  
+    if (!email.trim()) {
+      alert('Email is required');
+      return;
+    }
+  
+    if (!password) {
+      alert('Password is required');
+      return;
+    }
+  
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+  
+    try {
+      const response = await axios.post('http://localhost:5000/api/register', {
+        firstName,
+        lastName, // can be blank
+        email,
+        password,
+        confirmPassword,
+      });
+  
+      if (response.status === 201) {
+        alert('Registration successful!');
+        navigate('/login');
+      }
+    } catch (err) {
+      if (err.response && err.response.status === 409) {
+        
+        alert('Email already exists. Please use a different one.');
+      } else {
+        console.error(err);
+        setError('Registration failed. Please try again.');
+      }
+    }
   };
 
   return (
@@ -29,7 +77,11 @@ const Register = () => {
       {/* Light-Dark Switch */}
       <div className="lightdark-switch">
         <span className="switch-btn" id="btnSwitch">
-          <img src="/assets/images/icon/moon.svg" alt="light-dark-switchbtn" className="swtich-icon" />
+          <img
+            src="/assets/images/icon/moon.svg"
+            alt="light-dark-switchbtn"
+            className="swtich-icon"
+          />
         </span>
       </div>
 
@@ -96,7 +148,7 @@ const Register = () => {
                           id="first-name"
                           value={firstName}
                           onChange={(e) => setFirstName(e.target.value)}
-                          placeholder="Ex. Jhon"
+                          placeholder="Ex. John"
                         />
                       </div>
 
@@ -159,6 +211,9 @@ const Register = () => {
                         />
                       </div>
                     </div>
+
+                    {/* Error message */}
+                    {error && <div className="alert alert-danger mt-3">{error}</div>}
 
                     <button
                       type="submit"

@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../front/Header";
+import Footer from "../front/Footer";
 import { Outlet } from "react-router-dom";
 
 const FrontLayout = () => {
@@ -9,7 +10,8 @@ const FrontLayout = () => {
          <main>
            <Outlet /> {/* renders current route's page */}
          </main>
-         
+         <Footer />
+
          </>
     );
 };
