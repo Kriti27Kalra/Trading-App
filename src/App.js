@@ -1,14 +1,14 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import FrontLayout from "./Layouts/FrontLayout";
-import UserDashboardLayout from "./Layouts/UserDashboardLayout";
-import AdminDashboardLayout from "./Layouts/AdminDashboardLayout";
+import FrontLayout from "./layouts/FrontLayout";
+import UserDashboardLayout from "./layouts/UserDashboardLayout";
+import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
 
 
 import Home from "./front/Home";
 import Login from "./front/Login";
 import Register from "./front/Register";
-import UserDashboard from "./User/Dashboard";
-import AdminDashboard from "./Admin/Dashboard";
+import UserDashboard from "./user/Dashboard";
+import AdminDashboard from "./admin/Dashboard";
 
 
 function App() {

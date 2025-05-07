@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import AdminSidebar from "../admin/AdminSidebar";
 
 const AdminDashboardLayout = () => {
   const location = useLocation();
@@ -8,7 +8,7 @@ const AdminDashboardLayout = () => {
   return (
     <div className="d-flex">
     {/* Sidebar */}
-    <Sidebar role="admin" /> 
+    <AdminSidebar />
 
       {/* Main Content Area */}
       <div className="main-content flex-grow-1 d-flex flex-column">

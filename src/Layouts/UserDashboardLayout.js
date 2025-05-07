@@ -1,12 +1,12 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
+import UserSidebar from "../user/UserSidebar";
 
 function UserDashboardLayout() {
   return (
     <div className="d-flex">
     {/* Sidebar */}
-    <Sidebar role="user" />
+    <UserSidebar />
     
 
       {/* Main content */}
