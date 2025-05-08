@@ -7,9 +7,12 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);  // New state to track loading
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    
+    setLoading(true);  // Set loading to true when request starts
 
     try {
       const res = await axios.post("http://localhost:5000/api/login", {
@@ -31,6 +34,8 @@ function Login() {
     } catch (err) {
       console.error("Login error:", err);
       alert("An error occurred while logging in.");
+    } finally {
+      setLoading(false);  // Set loading to false when request ends (success or failure)
     }
   };
 
@@ -111,7 +116,13 @@ function Login() {
                       </div>
                     </div>
 
-                    <button type="submit" className="trk-btn trk-btn--border trk-btn--primary d-block mt-4">LOGIN</button>
+                    <button
+                      type="submit"
+                      className="trk-btn trk-btn--border trk-btn--primary d-block mt-4"
+                      disabled={loading}  // Disable button when loading
+                    >
+                      {loading ? "Processing..." : "LOGIN"}  {/* Change text to indicate loading */}
+                    </button>
                   </form>
 
                   <div className="account__switch">
@@ -122,11 +133,10 @@ function Login() {
             </div>
           </div>
           <div className="account__shape">
-          <span className="account__shape-item account__shape-item--1">
-            <img src="/assets/images/contact/4.png" alt="shape-icon" />
-          </span>
-        </div>
-        
+            <span className="account__shape-item account__shape-item--1">
+              <img src="/assets/images/contact/4.png" alt="shape-icon" />
+            </span>
+          </div>
         </div>
       </section>
     </>

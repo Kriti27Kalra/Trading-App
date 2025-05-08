@@ -10,33 +10,35 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
-
+  const [loading, setLoading] = useState(false); // Add loading state
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-  
+    
     // Basic frontend validation
     if (!firstName.trim()) {
       alert('First name is required');
       return;
     }
-  
+    
     if (!email.trim()) {
       alert('Email is required');
       return;
     }
-  
+    
     if (!password) {
       alert('Password is required');
       return;
     }
-  
+    
     if (password !== confirmPassword) {
       alert('Passwords do not match');
       return;
     }
-  
+
+    setLoading(true); // Set loading to true when the registration starts
+
     try {
       const response = await axios.post('http://localhost:5000/api/register', {
         firstName,
@@ -45,19 +47,20 @@ const Register = () => {
         password,
         confirmPassword,
       });
-  
+
       if (response.status === 201) {
         alert('Registration successful!');
         navigate('/login');
       }
     } catch (err) {
       if (err.response && err.response.status === 409) {
-        
         alert('Email already exists. Please use a different one.');
       } else {
         console.error(err);
         setError('Registration failed. Please try again.');
       }
+    } finally {
+      setLoading(false); // Set loading to false when the request completes
     }
   };
 
@@ -214,11 +217,13 @@ const Register = () => {
                     {/* Error message */}
                     {error && <div className="alert alert-danger mt-3">{error}</div>}
 
+                    {/* Button with loading state */}
                     <button
                       type="submit"
                       className="trk-btn trk-btn--border trk-btn--primary d-block mt-4"
+                      disabled={loading} // Disable button when loading
                     >
-                      REGISTER
+                      {loading ? "Processing..." : "REGISTER"} {/* Show Processing... when loading */}
                     </button>
                   </form>
 
