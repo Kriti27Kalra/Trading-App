@@ -1,26 +1,52 @@
-import React from "react";
-import { Link } from "react-router-dom";  // Import Link component
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await axios.post("http://localhost:5000/api/login", {
+        email,
+        password,
+      });
+
+      if (res.data.success) {
+        alert("Login successful!");
+
+        // Save user data
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+
+        // Redirect to user dashboard
+        navigate("/user/dashboard");
+      } else {
+        alert(res.data.message || "Login failed");
+      }
+    } catch (err) {
+      console.error("Login error:", err);
+      alert("An error occurred while logging in.");
+    }
+  };
+
   return (
     <>
-      {/* Login-specific header */}
       <header className="login-header">
         <div className="container">
           <div className="header-wrapper">
-            <div className="logo">
-              {/* Removed the Link component around the logo */}
-              
-            </div>
+            <div className="logo"></div>
           </div>
         </div>
       </header>
 
       <section
         className="page-header bg--cover"
-        style={{ backgroundImage: "url(/assets/images/header/1.png)", marginTop: "70px" 
-
-        }}
+        style={{ backgroundImage: "url(/assets/images/header/1.png)", marginTop: "70px" }}
       >
         <div className="container">
           <div className="page-header__content">
@@ -33,11 +59,6 @@ function Login() {
               </ol>
             </nav>
           </div>
-          <div className="page-header__shape">
-            <span className="page-header__shape-item page-header__shape-item--1">
-              <img src="/assets/images/header/2.png" alt="shape-icon" />
-            </span>
-          </div>
         </div>
       </section>
 
@@ -49,32 +70,34 @@ function Login() {
                 <div className="account__content account__content--style1">
                   <div className="account__header">
                     <h2>Welcome back!</h2>
-                    <p>Hey there! Ready to log in? Just enter your username and password below and you'll be back in action in no time. Let's go!</p>
+                    <p>Hey there! Ready to log in? Enter your email and password below to continue.</p>
                   </div>
 
-                  <div className="account__social">
-                    <a href="#" className="account__social-btn">
-                      <span><img src="/assets/images/others/google.svg" alt="google icon" /></span>
-                      Continue with Google
-                    </a>
-                  </div>
-
-                  <div className="account__divider account__divider--style1">
-                    <span>or</span>
-                  </div>
-
-                  <form className="account__form needs-validation" noValidate>
+                  <form className="account__form" onSubmit={handleLogin}>
                     <div className="row g-4">
                       <div className="col-12">
                         <label htmlFor="account-email" className="form-label">Email</label>
-                        <input type="email" className="form-control" id="account-email" placeholder="Enter your email" required />
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="account-email"
+                          placeholder="Enter your email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          required
+                        />
                       </div>
                       <div className="col-12">
-                        <div className="form-pass">
-                          <label htmlFor="account-pass" className="form-label">Password</label>
-                          <input type="password" className="form-control showhide-pass" id="account-pass" placeholder="Password" required />
-                          
-                        </div>
+                        <label htmlFor="account-pass" className="form-label">Password</label>
+                        <input
+                          type="password"
+                          className="form-control"
+                          id="account-pass"
+                          placeholder="Password"
+                          value={password}
+                          onChange={(e) => setPassword(e.target.value)}
+                          required
+                        />
                       </div>
                     </div>
 
@@ -98,12 +121,12 @@ function Login() {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="account__shape">
+          <div className="account__shape">
           <span className="account__shape-item account__shape-item--1">
             <img src="/assets/images/contact/4.png" alt="shape-icon" />
           </span>
+        </div>
+        
         </div>
       </section>
     </>

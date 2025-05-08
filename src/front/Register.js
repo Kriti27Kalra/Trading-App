@@ -68,7 +68,6 @@ const Register = () => {
         <div className="container">
           <div className="header-wrapper">
             <div className="logo">
-              {/* Optional: Add your logo here */}
             </div>
           </div>
         </div>
