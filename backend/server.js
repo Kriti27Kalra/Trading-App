@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const db = require('./db');  // Import the database connection
+const db = require('./src/config/db'); 
 
 // Create an instance of Express
 const app = express();
