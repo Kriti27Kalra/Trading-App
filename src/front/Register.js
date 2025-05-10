@@ -15,23 +15,23 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    
+
     // Basic frontend validation
     if (!firstName.trim()) {
       alert('First name is required');
       return;
     }
-    
+
     if (!email.trim()) {
       alert('Email is required');
       return;
     }
-    
+
     if (!password) {
       alert('Password is required');
       return;
     }
-    
+
     if (password !== confirmPassword) {
       alert('Passwords do not match');
       return;
@@ -45,7 +45,7 @@ const Register = () => {
         lastName, // can be blank
         email,
         password,
-        confirmPassword,
+        confirmPassword, // Send confirmPassword to backend as well
       });
 
       if (response.status === 201) {
@@ -53,8 +53,11 @@ const Register = () => {
         navigate('/login');
       }
     } catch (err) {
+      // Check for backend validation errors
       if (err.response && err.response.status === 409) {
         alert('Email already exists. Please use a different one.');
+      } else if (err.response && err.response.data.message) {
+        setError(err.response.data.message); // Display backend error message
       } else {
         console.error(err);
         setError('Registration failed. Please try again.');
