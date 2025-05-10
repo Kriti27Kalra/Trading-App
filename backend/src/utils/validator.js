@@ -1,24 +1,10 @@
 const { body, validationResult } = require("express-validator");
 
 const registerValidator = [
-  body("firstName")
-    .notEmpty()
-    .withMessage("First name is required"),
-  
-  body("lastName")
-    .notEmpty()
-    .withMessage("Last name is required"),
-  
-  body("email")
-    .trim()
-    .normalizeEmail()
-    .isEmail()
-    .withMessage("Valid email is required"),
-  
-  body("password")
-    .notEmpty()
-    .withMessage("Password is required"), // No length constraint anymore
-  
+  body("firstName").notEmpty().withMessage("First name is required"),
+  body("lastName").notEmpty().withMessage("Last name is required"),
+  body("email").trim().normalizeEmail().isEmail().withMessage("Valid email is required"),
+  body("password").notEmpty().withMessage("Password is required"),
   body("confirmPassword").custom((value, { req }) => {
     if (value !== req.body.password) {
       throw new Error("Passwords do not match");

@@ -1,12 +1,16 @@
 const express = require('express');
-const app = express();
-const db = require('./config/db');
-const userRoutes = require('./routes/user.routes');
-const authRoutes = require('./routes/auth.routes');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
-// middleware & routes
-app.use(express.json());
-app.use('/api/users', userRoutes);
-app.use('/api/auth', authRoutes);
+const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/user.routes');
+
+const app = express();
+app.use(cors());
+app.use(bodyParser.json());
+
+
+app.use('/api', authRoutes);
+app.use('/api', userRoutes);
 
 module.exports = app;
