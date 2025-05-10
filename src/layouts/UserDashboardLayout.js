@@ -12,7 +12,7 @@ function UserDashboardLayout() {
       {/* Main content */}
       <div className="flex-grow-1">
         {/* Header */}
-        <div className="bg-light p-3 border-bottom">
+        <div className="bg-light p-3 border-bottom text-center">
           <h5>User Dashboard</h5>
         </div>
 
