@@ -1,26 +1,22 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
-import UserSidebar from "../user/UserSidebar";
+import { Outlet } from "react-router-dom";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 function UserDashboardLayout() {
   return (
-    <div className="d-flex">
-    {/* Sidebar */}
-    <UserSidebar />
-    
+    <div className="d-flex flex-column min-vh-100">
+      {/* Header */}
+      <Header />
 
       {/* Main content */}
-      <div className="flex-grow-1">
-        {/* Header */}
-        <div className="bg-light p-3 border-bottom text-center">
-          <h5>User Dashboard</h5>
-        </div>
+      <main className="flex-grow-1">
+        <Outlet />
+      </main>
+      
 
-        {/* Outlet for nested routes */}
-        <div className="p-4">
-          <Outlet />
-        </div>
-      </div>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }

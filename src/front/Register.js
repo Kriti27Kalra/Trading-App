@@ -93,7 +93,7 @@ const Register = () => {
       {/* Page Header */}
       <section
         className="page-header bg--cover"
-        style={{ backgroundImage: 'url(/assets/images/header/1.png)', marginTop: '70px' }}
+        style={{ backgroundImage: 'url(/assets/images/header/1.png)', marginTop: '60px', borderRadius: '0px' }}
       >
         <div className="container">
           <div className="page-header__content">

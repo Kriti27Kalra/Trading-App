@@ -3,12 +3,15 @@ import FrontLayout from "./layouts/FrontLayout";
 import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
 
+
+
 import Home from "./front/Home";
 import Login from "./front/Login";
 import Register from "./front/Register";
 import UserDashboard from "./user/Dashboard";
 import AdminDashboard from "./admin/Dashboard";
-
+import Form from "./components/Form";
+import Table from "./components/Table";
 const AuthProtectedRoute = ({ children }) => {
   const isAuthenticated = localStorage.getItem("user");
   return isAuthenticated ? children : <Navigate to="/login" replace />;
@@ -53,6 +56,9 @@ function App() {
           }
         >
           <Route path="/user/dashboard" element={<UserDashboard />} />
+          <Route path="/user/basicform" element={<Form />} />
+          <Route path="/user/basictable" element={<Table />} />
+
         </Route>
 
         {/* Protected Admin dashboard layout routes */}
