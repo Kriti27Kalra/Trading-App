@@ -4,7 +4,6 @@ import UserSidebar from '../user/UserSidebar';
  function Header() {
    return (
  <div>
-    <UserSidebar/>
  
  <div className="header">
           <div className="header-left">
@@ -199,9 +198,12 @@ import UserSidebar from '../user/UserSidebar';
               <div className="reset-options pt-30 text-center">
                 <button className="btn btn-danger" id="reset-settings">Reset Settings</button>
               </div>
+
             </div>
           </div>
         </div>
+            <UserSidebar/>
+
         </div>
         );
 }
