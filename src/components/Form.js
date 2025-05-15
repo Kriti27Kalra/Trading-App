@@ -67,31 +67,31 @@ const Form = () => {
 						<div className="form-group row">
 							<label className="col-sm-12 col-md-2 col-form-label">Email</label>
 							<div className="col-sm-12 col-md-10">
-								<input className="form-control" value="bootstrap@example.com" type="email"/>
+								<input className="form-control" defaultValue="bootstrap@example.com" type="email"/>
 							</div>
 						</div>
 						<div className="form-group row">
 							<label className="col-sm-12 col-md-2 col-form-label">URL</label>
 							<div className="col-sm-12 col-md-10">
-								<input className="form-control" value="https://getbootstrap.com" type="url"/>
+								<input className="form-control" defaultValue="https://getbootstrap.com" type="url"/>
 							</div>
 						</div>
 						<div className="form-group row">
 							<label className="col-sm-12 col-md-2 col-form-label">Telephone</label>
 							<div className="col-sm-12 col-md-10">
-								<input className="form-control" value="1-(111)-111-1111" type="tel"/>
+								<input className="form-control" defaultValue="1-(111)-111-1111" type="tel"/>
 							</div>
 						</div>
 						<div className="form-group row">
 							<label className="col-sm-12 col-md-2 col-form-label">Password</label>
 							<div className="col-sm-12 col-md-10">
-								<input className="form-control" value="password" type="password"/>
+								<input className="form-control" defaultValue="password" type="password"/>
 							</div>
 						</div>
 						<div className="form-group row">
 							<label className="col-sm-12 col-md-2 col-form-label">Number</label>
 							<div className="col-sm-12 col-md-10">
-								<input className="form-control" value="100" type="number"/>
+								<input className="form-control" defaultValue="100" type="number"/>
 							</div>
 						</div>
 						<div className="form-group row">
@@ -121,24 +121,25 @@ const Form = () => {
 						<div className="form-group row">
 							<label className="col-sm-12 col-md-2 col-form-label">Select</label>
 							<div className="col-sm-12 col-md-10">
-								<select className="custom-select col-12">
-									<option selected="">Choose...</option>
-									<option value="1">One</option>
-									<option value="2">Two</option>
-									<option value="3">Three</option>
-								</select>
+								<select className="custom-select col-12" defaultValue="">
+                                        <option value="">Choose...</option>
+                                         <option value="1">One</option>
+                                          <option value="2">Two</option>
+                                              <option value="3">Three</option>
+                                            </select>
+
 							</div>
 						</div>
 						<div className="form-group row">
 							<label className="col-sm-12 col-md-2 col-form-label">Color</label>
 							<div className="col-sm-12 col-md-10">
-								<input className="form-control" value="#563d7c" type="color"/>
+								<input className="form-control" defaultValue="#563d7c" type="color"/>
 							</div>
 						</div>
 						<div className="form-group row">
 							<label className="col-sm-12 col-md-2 col-form-label">Input Range</label>
 							<div className="col-sm-12 col-md-10">
-								<input className="form-control" value="50" type="range"/>
+								<input className="form-control" defaultValue="50" type="range"/>
 							</div>
 						</div>
 					</form>
@@ -219,12 +220,13 @@ const Form = () => {
 	<div className="form-group row">
 		<label className="col-sm-12 col-md-2 col-form-label">Select</label>
 		<div className="col-sm-12 col-md-10">
-			<select className="custom-select col-12">
-				<option selected="">Choose...</option>
-				<option value="1">One</option>
-				<option value="2">Two</option>
-				<option value="3">Three</option>
-			</select>
+			<select className="custom-select col-12" defaultValue="">
+  <option value="">Choose...</option>
+  <option value="1">One</option>
+  <option value="2">Two</option>
+  <option value="3">Three</option>
+</select>
+
 		</div>
 	</div>
 	<div className="form-group row">
