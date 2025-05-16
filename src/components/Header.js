@@ -1,5 +1,4 @@
  import React from 'react';
-import UserSidebar from '../user/UserSidebar';
  
  function Header() {
    return (
@@ -202,7 +201,7 @@ import UserSidebar from '../user/UserSidebar';
             </div>
           </div>
         </div>
-            <UserSidebar/>
+        
 
         </div>
         );

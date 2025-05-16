@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const AdminSidebar = () => {
+ 
+
   
   
     return (
@@ -20,6 +22,8 @@ const AdminSidebar = () => {
         <div className="menu-block customscroll">
           <div className="sidebar-menu">
             <ul id="accordion-menu">
+              
+
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle">
                   <span className="micon dw dw-house-1" /><span className="mtext">Home</span>
@@ -53,6 +57,12 @@ const AdminSidebar = () => {
                   <li><a href="datatable.html">DataTables</a></li>
                 </ul>
               </li>
+              <li>
+              <a href="/admin/users" className="dropdown-toggle no-arrow">
+              <span className="micon dw dw-user1" /><span className="mtext">User List</span>
+                 </a>
+  
+                  </li>
               <li>
                 <a href="calendar.html" className="dropdown-toggle no-arrow">
                   <span className="micon dw dw-calendar1" /><span className="mtext">Calendar</span>

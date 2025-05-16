@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import AdminSidebar from "../admin/AdminSidebar";
 
 function AdminDashboardLayout() {
   useEffect(() => {
@@ -52,9 +53,12 @@ function AdminDashboardLayout() {
   return (
     <div className="d-flex flex-column min-vh-100">
       <Header />
+      <AdminSidebar/>
+      
       <main className="flex-grow-1">
         <Outlet />
       </main>
+      
       <Footer />
     </div>
   );

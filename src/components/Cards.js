@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const Cards = () => {
-
+const Cards = ({ userCount }) => {
   return (
     <div className="row">
       <div className="col-xl-3 mb-30">
@@ -11,12 +10,15 @@ const Cards = () => {
               <div id="chart" />
             </div>
             <div className="widget-data">
-              <div className="h4 mb-0">2020</div>
-              <div className="weight-600 font-14">Contact</div>
+              <div className="h4 mb-0">{userCount}</div>  {/* Show dynamic user count */}
+              <div className="weight-600 font-14">Users</div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* The rest cards unchanged */}
+
       <div className="col-xl-3 mb-30">
         <div className="card-box height-100-p widget-style1">
           <div className="d-flex flex-wrap align-items-center">

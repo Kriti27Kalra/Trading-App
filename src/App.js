@@ -2,6 +2,8 @@ import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import FrontLayout from "./layouts/FrontLayout";
 import UserDashboardLayout from "./layouts/UserDashboardLayout";
 import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
+import AdminUsers from "./admin/AdminUsers";
+import EditUser from "./admin/EditUser";
 
 
 
@@ -65,6 +67,9 @@ function App() {
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
           <Route path="/admin/basicform" element={<Form />} />
           <Route path="/admin/basictable" element={<Table />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/users/edit/:id" element={<EditUser />} />
+
 
         </Route>
       </Routes>
