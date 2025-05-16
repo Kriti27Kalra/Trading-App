@@ -1,26 +1,6 @@
 import React, { useEffect } from 'react';
 
 const Cards = () => {
- useEffect(() => {
-  const script = document.createElement("script");
-  script.src = "/vendors/scripts/dashboard.js";
-  script.async = true;
-
-  script.onload = () => {
-    const chartElement = document.getElementById("chart");
-    if (chartElement) {
-    }
-  };
-
-  document.body.appendChild(script);
-  return () => {
-    document.body.removeChild(script);
-  };
-}, []);
-
-
-
-
 
   return (
     <div className="row">

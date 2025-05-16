@@ -1,43 +1,52 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+
 import axios from "axios";
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+const isAdminLogin = location.pathname === "/admin/login";
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);  // New state to track loading
+  const [loading, setLoading] = useState(false);  
+  
+ const handleLogin = async (e) => {
+  e.preventDefault();
+  setLoading(true);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    
-    setLoading(true);  // Set loading to true when request starts
+  try {
+    const baseURL = "http://localhost:5000";
+    const url = isAdminLogin
+      ? `${baseURL}/api/admin/login`
+      : `${baseURL}/api/login`;
 
-    try {
-      const res = await axios.post("http://localhost:5000/api/login", {
-        email,
-        password,
-      });
+    const res = await axios.post(url, { email, password });
 
-      if (res.data.success) {
-        alert("Login successful!");
+    if (res.data.success) {
+      alert("Login successful!");
 
-        // Save user data
-        localStorage.setItem("user", JSON.stringify(res.data.user));
-
-        // Redirect to user dashboard
-        navigate("/user/dashboard");
+      if (isAdminLogin) {
+        localStorage.setItem("admin", JSON.stringify(res.data.admin));
+        navigate("/admin/dashboard");
       } else {
-        alert(res.data.message || "Login failed");
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        navigate("/user/dashboard");
       }
-    } catch (err) {
-      console.error("Login error:", err);
-      alert("An error occurred while logging in.");
-    } finally {
-      setLoading(false);  // Set loading to false when request ends (success or failure)
+    } else {
+      alert(res.data.message || "Login failed");
     }
-  };
+  } catch (err) {
+    console.error("Login error:", err);
+    alert(err.response?.data?.message || "An error occurred while logging in.");
+  } finally {
+    setLoading(false);
+  }
+};
+
+
 
   return (
     <>
@@ -115,6 +124,8 @@ function Login() {
                         <Link to="/forgot-pass">Forgot Password?</Link>
                       </div>
                     </div>
+                   
+
 
                     <button
                       type="submit"

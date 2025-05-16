@@ -25,15 +25,7 @@ const AdminProtectedRoute = ({ children }) => {
 function App() {
   const location = useLocation();
 
-  const hideHeaderPaths = ["/admin/dashboard", "/user/dashboard"];
-  const hideFooterPaths = ["/admin/dashboard", "/user/dashboard"];
-
-  const shouldHideHeader = hideHeaderPaths.some((path) =>
-    location.pathname.startsWith(path)
-  );
-  const shouldHideFooter = hideFooterPaths.some((path) =>
-    location.pathname.startsWith(path)
-  );
+  
 
   return (
     <div>
@@ -44,6 +36,7 @@ function App() {
         <Route element={<FrontLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/admin/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Route>
 
@@ -70,6 +63,9 @@ function App() {
           }
         >
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/basicform" element={<Form />} />
+          <Route path="/admin/basictable" element={<Table />} />
+
         </Route>
       </Routes>
     </div>
