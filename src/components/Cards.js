@@ -17,7 +17,6 @@ const Cards = ({ userCount }) => {
         </div>
       </div>
 
-      {/* The rest cards unchanged */}
 
       <div className="col-xl-3 mb-30">
         <div className="card-box height-100-p widget-style1">
