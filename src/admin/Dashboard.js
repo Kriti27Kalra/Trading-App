@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Cards from "../components/Cards";
-
+import AdminCards from "./AdminCards";
 const AdminDashboard = () => {
   const user = JSON.parse(localStorage.getItem("admin"));
   const username = user?.name || "Admin";
@@ -44,7 +43,7 @@ const AdminDashboard = () => {
           </div>
 
           {/* Pass userCount as a prop */}
-          <Cards userCount={userCount} />
+          <AdminCards userCount={userCount} />
         </div>
       </div>
     </div>

@@ -38,7 +38,7 @@ const AdminSidebar = () => {
                   <span className="micon dw dw-edit2" /><span className="mtext">Forms</span>
                 </a>
                 <ul className="submenu">
-                  <li><a href="/user/basicform">Basic Forms</a></li>
+                  <li><a href="/admin/basicform">Basic Forms</a></li>
 
                   <li><a href="advanced-components.html">Advanced Components</a></li>
                   <li><a href="form-wizard.html">Form Wizard</a></li>
@@ -53,7 +53,7 @@ const AdminSidebar = () => {
                   <span className="micon dw dw-library" /><span className="mtext">Tables</span>
                 </a>
                 <ul className="submenu">
-                  <li><a href="/user/basictable">Basic Tables</a></li>
+                  <li><a href="/admin/basictable">Basic Tables</a></li>
                   <li><a href="datatable.html">DataTables</a></li>
                 </ul>
               </li>

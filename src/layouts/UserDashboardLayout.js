@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
+import UserFooter from "../user/UserFooter";
+import UserHeader from "../user/UserHeader";
 import UserSidebar from "../user/UserSidebar"
 
 function UserDashboardLayout() {
@@ -52,12 +52,12 @@ function UserDashboardLayout() {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <Header />
+      <UserHeader />
       <UserSidebar/>
       <main className="flex-grow-1">
         <Outlet />
       </main>
-      <Footer />
+      <UserFooter />
     </div>
   );
 }

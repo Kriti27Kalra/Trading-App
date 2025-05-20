@@ -54,6 +54,12 @@ const UserSidebar = () => {
                 </ul>
               </li>
               <li>
+             <a href="/user/edit-profile" className="dropdown-toggle no-arrow">
+               <span className="micon dw dw-user1" /><span className="mtext">Edit Profile</span>
+              </a>
+                  </li>
+
+              <li>
                 <a href="calendar.html" className="dropdown-toggle no-arrow">
                   <span className="micon dw dw-calendar1" /><span className="mtext">Calendar</span>
                 </a>

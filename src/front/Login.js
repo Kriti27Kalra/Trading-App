@@ -29,9 +29,11 @@ const isAdminLogin = location.pathname === "/admin/login";
       alert("Login successful!");
 
       if (isAdminLogin) {
+        localStorage.removeItem("user");
         localStorage.setItem("admin", JSON.stringify(res.data.admin));
         navigate("/admin/dashboard");
       } else {
+        localStorage.removeItem("admin");
         localStorage.setItem("user", JSON.stringify(res.data.user));
         navigate("/user/dashboard");
       }
@@ -45,6 +47,7 @@ const isAdminLogin = location.pathname === "/admin/login";
     setLoading(false);
   }
 };
+
 
 
 
