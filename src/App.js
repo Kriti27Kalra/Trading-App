@@ -5,8 +5,8 @@ import AdminDashboardLayout from "./layouts/AdminDashboardLayout";
 import AdminUsers from "./admin/AdminUsers";
 import EditUser from "./admin/EditUser";
 import EditUserProfile from "./user/EditUserProfile";
-import AdminProtectedRoute from "./components/AdminProtectedRoute";
-import AuthProtectedRoute from "./components/AuthProtectedRoute";
+import AdminProtectedRoute from "./protectedRoutes/AdminProtectedRoute";
+import AuthProtectedRoute from "./protectedRoutes/AuthProtectedRoute";
 
 
 import Home from "./front/Home";
