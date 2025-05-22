@@ -18,6 +18,8 @@ import UserForm from "./user/UserForm";
 import UserTable from "./user/UserTable";
 import AdminForm from "./admin/AdminForm";
 import AdminTable from "./admin/AdminTable";
+import MyForm from "./user/MyForm";
+import MyTable from "./user/MyTable";
 
 
 function App() {
@@ -50,6 +52,10 @@ function App() {
           <Route path="/user/basicform" element={<UserForm />} />
           <Route path="/user/basictable" element={<UserTable />} />
           <Route path="/user/edit-profile" element={<EditUserProfile />} />
+         <Route path="/user/myform" element={<MyForm />} />
+          <Route path="/user/mytable" element={<MyTable />} />
+
+
 
         </Route>
 

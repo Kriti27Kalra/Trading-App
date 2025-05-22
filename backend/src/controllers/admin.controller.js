@@ -3,16 +3,18 @@ const User = require("../models/user.model");
 
 exports.adminLogin = (req, res) => {
   const { email, password } = req.body;
-  Admin.findAdminByCredentials(email, password, (err, results) => {
+  Admin.findByCredentials(email, password, (err, admin) => {
     if (err) return res.status(500).json({ success: false, message: "Database error" });
 
-    if (results.length === 0) {
+    if (!admin) {
       return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
 
-    res.json({ success: true, admin: results[0] });
+    res.json({ success: true, admin });
   });
 };
+
+
 
 exports.getAllUsers = (req, res) => {
   User.getAllUsers((err, results) => {

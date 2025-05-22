@@ -2,7 +2,7 @@ import React from 'react';
 
 const DynamicTable = ({ columns = [], data = [] }) => {
   return (
-    <table className="table table-bordered table-hover">
+    <table className="table table-striped">
       <thead>
         <tr>
           {columns.map((col, idx) => (
