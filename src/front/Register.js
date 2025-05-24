@@ -9,6 +9,8 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [referredByCode, setReferredByCode] = useState('');
+
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false); // Add loading state
 
@@ -36,6 +38,11 @@ const Register = () => {
       alert('Passwords do not match');
       return;
     }
+    if (!referredByCode.trim()) {
+  alert('Refer Code is required');
+  return;
+}
+
 
     setLoading(true); // Set loading to true when the registration starts
 
@@ -46,6 +53,8 @@ const Register = () => {
         email,
         password,
         confirmPassword, // Send confirmPassword to backend as well
+         referred_by_code: referredByCode,
+      
       });
 
       if (response.status === 201) {
@@ -216,6 +225,21 @@ const Register = () => {
                         />
                       </div>
                     </div>
+                    <div className="col-12 mt-4">
+                   <label htmlFor="refer-code" className="form-label">
+                        Refer Code <span className="text-danger">*</span>
+                       </label>
+                       <input
+                     type="text"
+                      className="form-control"
+                      id="refer-code"
+                     value={referredByCode}
+                       onChange={(e) => setReferredByCode(e.target.value)}
+                     placeholder="Enter the refer code"
+                      required
+                       />
+                     </div>
+
 
                     {/* Error message */}
                     {error && <div className="alert alert-danger mt-3">{error}</div>}

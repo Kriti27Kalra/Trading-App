@@ -1,7 +1,7 @@
 import React from 'react';
 import DynamicTable from '../components/User/DynamicTable'; 
 
-function UserTable() {
+function MyTable() {
     
   const columns = [
     { label: '#', accessor: 'id' },
@@ -79,4 +79,4 @@ function UserTable() {
   );
 }
 
-export default UserTable;
+export default MyTable;

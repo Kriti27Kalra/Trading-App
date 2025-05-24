@@ -37,7 +37,7 @@ const UserSidebar = () => {
                   <li><a href="/user/basicform">Basic Forms</a></li>
 
                   <li><a href="/user/myform">MyForm</a></li>
-                  <li><a href="form-wizard.html">Form Wizard</a></li>
+                  <li><a href="/user/editform">EditForm</a></li>
                   <li><a href="html5-editor.html">HTML5 Editor</a></li>
                   <li><a href="form-pickers.html">Form Pickers</a></li>
                   <li><a href="image-cropper.html">Image Cropper</a></li>
@@ -51,6 +51,8 @@ const UserSidebar = () => {
                 <ul className="submenu">
                   <li><a href="/user/basictable">Basic Tables</a></li>
                   <li><a href="/user/mytable">MyTable</a></li>
+                  <li><a href="/user/teamtable">TeamTable</a></li>
+
                 </ul>
               </li>
               <li>

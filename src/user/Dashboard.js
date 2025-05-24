@@ -40,10 +40,10 @@ const UserDashboard = () => {
                   <div className="weight-600 font-30 text-blue">{username}!</div>
                 </h4>
                 <p className="font-18 max-width-600">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Unde hic non repellendus debitis iure, doloremque assumenda.
-                  Autem modi, corrupti, nobis ea iure fugiat, veniam non quaerat
-                  mollitia animi error corporis.
+                 The market never sleeps—stay sharp, trade smart, and aim higher every day.
+                 Track your trades and make smart decisions with ease.
+
+
                 </p>
               </div>
             </div>

@@ -1,5 +1,6 @@
 const db = require("../config/db");
 
+// GET profile using email from token
 const getProfile = async (req, res) => {
   try {
     const email = req.user?.email;
@@ -24,6 +25,7 @@ const getProfile = async (req, res) => {
   }
 };
 
+// PUT update profile
 const updateProfile = async (req, res) => {
   try {
     const email = req.user?.email;
@@ -33,7 +35,6 @@ const updateProfile = async (req, res) => {
       return res.status(400).json({ success: false, message: "Email not provided in token" });
     }
 
-    // check if new email is already taken by another user
     if (newEmail && newEmail !== email) {
       const [existing] = await db.promise().query(
         "SELECT id FROM users WHERE email = ?",
@@ -60,4 +61,24 @@ const updateProfile = async (req, res) => {
   }
 };
 
-module.exports = { getProfile, updateProfile };
+// GET /api/team/:refer_code
+const getReferredUsers = async (req, res) => {
+  const { refer_code } = req.params;
+
+  try {
+    const [users] = await db.promise().query(
+      'SELECT id, first_name, last_name, email FROM users WHERE referred_by_code = ?',
+      [refer_code]
+    );
+    res.json({ success: true, data: users });
+  } catch (error) {
+    console.error('Error fetching team members:', error);
+    res.status(500).json({ success: false, message: 'Server error' });
+  }
+};
+
+module.exports = {
+  getProfile,
+  updateProfile,
+  getReferredUsers
+};
