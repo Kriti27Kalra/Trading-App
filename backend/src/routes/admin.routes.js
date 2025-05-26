@@ -13,5 +13,9 @@ router.get("/users/:id", adminController.getUserById);
 
 // Update user by ID
 router.put("/users/:id", adminController.updateUserById);
+// Custom user edit route
+router.get("/userslist/userediting/:id", adminController.getUserById);
+router.put("/userslist/userediting/:id", adminController.updateUserById);
+
 
 module.exports = router;

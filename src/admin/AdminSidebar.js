@@ -54,7 +54,7 @@ const AdminSidebar = () => {
                 </a>
                 <ul className="submenu">
                   <li><a href="/admin/basictable">Basic Tables</a></li>
-                  <li><a href="datatable.html">DataTables</a></li>
+                  <li><a href="/admin/userslist"> New Users List</a></li>
                 </ul>
               </li>
               <li>

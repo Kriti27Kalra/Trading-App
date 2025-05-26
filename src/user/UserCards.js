@@ -1,64 +1,25 @@
 import React from 'react';
-
+import DynamicCard from '../components/User/DynamicCard';
 const UserCards = () => {
   const user = JSON.parse(localStorage.getItem('user')) || {};
 
+  const cardData = [
+    { chartId: 'chart2', value: 400, label: 'Deals' },
+    { chartId: 'chart3', value: 350, label: 'Campaign' },
+    { chartId: 'chart4', value: '$6060', label: 'Worth' },
+    { chartId: null, value: user.refer_code || 'No ID yet', label: 'My Referral Code' },
+  ];
+
   return (
     <div className="row">
-            
-
-
-      <div className="col-xl-3 mb-30">
-        <div className="card-box height-100-p widget-style1">
-          <div className="d-flex flex-wrap align-items-center">
-            <div className="progress-data">
-              <div id="chart2" />
-            </div>
-            <div className="widget-data">
-              <div className="h4 mb-0">400</div>
-              <div className="weight-600 font-14">Deals</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-xl-3 mb-30">
-        <div className="card-box height-100-p widget-style1">
-          <div className="d-flex flex-wrap align-items-center">
-            <div className="progress-data">
-              <div id="chart3" />
-            </div>
-            <div className="widget-data">
-              <div className="h4 mb-0">350</div>
-              <div className="weight-600 font-14">Campaign</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-xl-3 mb-30">
-        <div className="card-box height-100-p widget-style1">
-          <div className="d-flex flex-wrap align-items-center">
-            <div className="progress-data">
-              <div id="chart4" />
-            </div>
-            <div className="widget-data">
-              <div className="h4 mb-0">$6060</div>
-              <div className="weight-600 font-14">Worth</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-xl-3 mb-30">
-        <div className="card-box height-100-p widget-style1">
-          <div className="d-flex flex-wrap align-items-center">
-            <div className="progress-data">
-            </div>
-           <div className="widget-data">
-              <div className="h4 mb-0">{user.refer_code || 'No ID yet'}</div>
-              <div className="weight-600 font-14"> My Referral Code</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {cardData.map((card, index) => (
+        <DynamicCard
+          key={index}
+          chartId={card.chartId}
+          value={card.value}
+          label={card.label}
+        />
+      ))}
     </div>
   );
 };
