@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import DynamicForm from "../components/Admin/DynamicForm"; 
 import AlertMessage from "../components/Admin/AlertMessage";
+import API_BASE_URL from "../components/config";
 
 function UserEditing() {
   const { id } = useParams();
@@ -16,7 +17,7 @@ const [alertMessage, setAlertMessage] = useState(null);
   ];
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/admin/userslist/userediting/${id}`)
+    fetch(`${API_BASE_URL}/admin/userslist/userediting/${id}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -30,7 +31,7 @@ const [alertMessage, setAlertMessage] = useState(null);
   }, [id, navigate]);
 
  const handleSubmit = (formData) => {
-  fetch(`http://localhost:5000/api/admin/userslist/userediting/${id}`, {
+  fetch(`${API_BASE_URL}/admin/userslist/userediting/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(formData)

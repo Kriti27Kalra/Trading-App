@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import DynamicTable from "../components/Admin/DynamicTable"; 
+import API_BASE_URL from "../components/config";
 
 function UsersList() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/admin/users")
+fetch(`${API_BASE_URL}/admin/users`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          // Add 'action' field for the table
           const updatedUsers = data.users.map((user) => ({
             ...user,
             action: (
