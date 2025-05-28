@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import DynamicTable from '../components/User/DynamicTable';
-import API_BASE_URL from '../components/config';
 
 const TeamTable = () => {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -16,7 +15,7 @@ const TeamTable = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user?.refer_code) {
-    axios.get(`${API_BASE_URL}/team/${user.refer_code}`)         
+    axios.get(`${process.env.REACT_APP_API_URL}/team/${user.refer_code}`)         
     .then(res => {
           if (res.data.success) {
             setTeamMembers(res.data.data);

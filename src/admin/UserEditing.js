@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import DynamicForm from "../components/Admin/DynamicForm"; 
 import AlertMessage from "../components/Admin/AlertMessage";
-import API_BASE_URL from "../components/config";
-
+ 
 function UserEditing() {
+
   const { id } = useParams();
   const navigate = useNavigate();
   const [initialValues, setInitialValues] = useState(null);
@@ -17,7 +17,7 @@ const [alertMessage, setAlertMessage] = useState(null);
   ];
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/admin/userslist/userediting/${id}`)
+    fetch(`${process.env.REACT_APP_API_URL}/admin/userslist/userediting/${id}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {
@@ -31,7 +31,7 @@ const [alertMessage, setAlertMessage] = useState(null);
   }, [id, navigate]);
 
  const handleSubmit = (formData) => {
-  fetch(`${API_BASE_URL}/admin/userslist/userediting/${id}`, {
+  fetch(`${process.env.REACT_APP_API_URL}/admin/userslist/userediting/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(formData)

@@ -29,7 +29,7 @@ const User = {
   // Get user by ID (callback style)
   getUserById: (id, callback) => {
     db.query(
-      "SELECT id, first_name, last_name, email FROM users WHERE id = ?",
+      "SELECT id, first_name, last_name, email, status FROM users WHERE id = ?",
       [id],
       (err, results) => {
         if (err) return callback(err);
@@ -50,11 +50,18 @@ const User = {
       }
     );
   },
+  updateStatusById: (id, status, callback) => {
+  db.query("UPDATE users SET status = ? WHERE id = ?", [status, id], (err, result) => {
+    if (err) return callback(err);
+    callback(null);
+  });
+},
+
 
   // Get all users (callback style)
   getAllUsers: (callback) => {
     db.query(
-      "SELECT id, first_name, last_name, email FROM users",
+      "SELECT id, first_name, last_name, email, status FROM users",
       (err, results) => {
         if (err) return callback(err);
         callback(null, results);

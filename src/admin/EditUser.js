@@ -12,7 +12,7 @@ function EditUser() {
   });
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/admin/users/${id}`)
+    fetch(`${process.env.REACT_APP_API_URL}/admin/users/${id}`)
       .then(res => res.json())
       .then(data => {
         if (data.success) {

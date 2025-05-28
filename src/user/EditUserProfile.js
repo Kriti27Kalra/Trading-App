@@ -21,7 +21,7 @@ function EditUserProfile() {
       return;
     }
 
-    fetch(`http://localhost:5000/api/admin/users/${userId}`)
+    fetch(`${process.env.REACT_APP_API_URL}/admin/users/${userId}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
@@ -49,7 +49,7 @@ function EditUserProfile() {
     return;
   }
 
-  fetch(`http://localhost:5000/api/admin/users/${userId}`, {
+  fetch(`${process.env.REACT_APP_API_URL}/admin/users/${userId}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),

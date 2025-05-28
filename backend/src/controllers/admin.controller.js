@@ -34,6 +34,16 @@ exports.getUserById = (req, res) => {
     res.json({ success: true, user: results[0] });
   });
 };
+exports.updateUserStatus = (req, res) => {
+  const userId = req.params.id;
+  const { status } = req.body;
+
+  User.updateStatusById(userId, status, (err) => {
+    if (err) return res.status(500).json({ success: false, message: "Database error" });
+    res.json({ success: true, message: "User status updated" });
+  });
+};
+
 
 exports.updateUserById = (req, res) => {
   User.updateUserById(req.params.id, req.body, (err) => {

@@ -6,7 +6,7 @@ function AdminUsers() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/admin/users")
+    fetch("process.env.REACT_APP_API_URL/admin/users")
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {

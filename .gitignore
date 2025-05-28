@@ -6,7 +6,7 @@ backend/node_modules/
 /build
 
 # environment variables
-.env
+
 backend/.env
 
 # logs
