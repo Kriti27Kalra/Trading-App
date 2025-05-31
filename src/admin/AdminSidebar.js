@@ -57,6 +57,14 @@ const AdminSidebar = () => {
                   <li><a href="/admin/userslist"> New Users List</a></li>
                 </ul>
               </li>
+
+                   <li>
+              <Link to="/admin/wallet" className="dropdown-toggle">
+                  <span className="micon dw dw-user1" />
+                   <span className="mtext">Wallet</span>
+                     </Link>
+                    </li>
+
               <li>
               <a href="/admin/users" className="dropdown-toggle no-arrow">
               <span className="micon dw dw-user1" /><span className="mtext">User List</span>

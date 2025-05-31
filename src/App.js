@@ -24,7 +24,7 @@ import EditForm from "./user/EditForm"
 import TeamTable from "./user/TeamTable";
 import UsersList from "./admin/UsersList";
 import UserEditing from "./admin/UserEditing";
-
+import AdminWallet from "./admin/AdminWallet";
 
 function App() {
   const location = useLocation();
@@ -84,6 +84,7 @@ function App() {
 
 
           <Route path="/admin/users/edit/:id" element={<EditUser />} />
+          <Route path="/admin/wallet" element={<AdminWallet />} />
 
 
 

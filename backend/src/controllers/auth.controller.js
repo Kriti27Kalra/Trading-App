@@ -39,8 +39,8 @@ exports.register = async (req, res) => {
 
     // Insert new user with unique refer_code
     const [result] = await db.promise().query(
-      'INSERT INTO users (first_name, last_name, email, password, referred_by_code, refer_code) VALUES (?, ?, ?, ?, ?, ?)',
-      [firstName, lastName, email, hashedPassword, referred_by_code, userIdCode]
+      'INSERT INTO users (first_name, last_name, email, password, referred_by_code, refer_code, wallet) VALUES (?, ?, ?, ?, ?, ?)',
+      [firstName, lastName, email, hashedPassword, referred_by_code, userIdCode, 0]
     );
 
     res.status(201).json({
@@ -84,7 +84,9 @@ exports.login = async (req, res) => {
         id: user.id,
         name: `${user.first_name} ${user.last_name}`,
         email: user.email,
-        refer_code: user.refer_code  
+        refer_code: user.refer_code, 
+        wallet: user.wallet
+
       },
     });
   } catch (err) {
