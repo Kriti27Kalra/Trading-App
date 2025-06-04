@@ -59,15 +59,34 @@ const User = {
 
 
   // Get all users (callback style)
-  getAllUsers: (callback) => {
-    db.query(
-      "SELECT id, first_name, last_name, email, status FROM users",
-      (err, results) => {
-        if (err) return callback(err);
-        callback(null, results);
-      }
-    );
-  }
+getAllUsers: (callback) => {
+  db.query(
+    `SELECT 
+      id, 
+      CONCAT(first_name, ' ', last_name) AS name, 
+      email, 
+      status, 
+      refer_code,
+      created_at
+     FROM users`,
+    (err, results) => {
+      if (err) return callback(err);
+      callback(null, results);
+    }
+  );
+}
 };
+// Get team count by referral code
+User.getTeamCountByReferCode = (referCode, callback) => {
+  db.query(
+    "SELECT COUNT(*) AS count FROM users WHERE referred_by_code = ?",
+    [referCode],
+    (err, results) => {
+      if (err) return callback(err);
+      callback(null, results[0].count);
+    }
+  );
+};
+
 
 module.exports = User;

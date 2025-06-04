@@ -51,3 +51,33 @@ exports.updateUserById = (req, res) => {
     res.json({ success: true, message: "User updated successfully" });
   });
 };
+exports.getTeamCountByReferCode = (req, res) => {
+  const { referCode } = req.params;
+
+  if (!referCode) {
+    return res.status(400).json({ success: false, message: "Refer code is required" });
+  }
+
+  User.getTeamCountByReferCode(referCode, (err, count) => {
+    if (err) return res.status(500).json({ success: false, message: "Database error" });
+
+    res.json({ success: true, teamCount: count });
+  });
+};
+// Assuming you have a WalletHistory model for wallet transactions
+
+exports.getWalletHistoryByReferCode = (req, res) => {
+  const referCode = req.params.referCode;
+
+  if (!referCode) {
+    return res.status(400).json({ success: false, message: "Refer code is required" });
+  }
+
+  WalletHistory.getByReferCode(referCode, (err, results) => {
+    if (err) return res.status(500).json({ success: false, message: "Database error" });
+
+    res.json(results);  // Return raw results or format as needed
+  });
+};
+
+

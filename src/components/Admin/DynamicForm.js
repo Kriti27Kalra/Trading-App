@@ -3,23 +3,37 @@ import React, { useState } from 'react';
 const DynamicForm = ({ fields = [], onSubmit, initialValues = {} }) => {
   const [formData, setFormData] = useState(initialValues);
 
-  const handleChange = (e) => {
+  const handleChange = (e, customOnChange) => {
     const { name, value, type, checked } = e.target;
+    let processedValue = value;
+
+    if (type === 'checkbox') {
+      processedValue = checked;
+    } else if (type === 'number') {
+      processedValue = value === '' ? '' : Number(value);
+    }
+
     setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value,
+      [name]: processedValue,
     }));
+
+    if (customOnChange) {
+      customOnChange(processedValue);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    if (onSubmit) {
+      onSubmit(formData);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      {fields.map(({ name, label, type = 'text', placeholder, options }, index) => (
-        <div key={index} className="form-group row align-items-center mb-3">
+      {fields.map(({ name, label, type = 'text', placeholder, options, onChange, extraContent }, index) => (
+        <div key={index} className="form-group row align-items-start mb-3">
           <label htmlFor={name} className="col-md-3 col-form-label">
             {label}
           </label>
@@ -29,7 +43,7 @@ const DynamicForm = ({ fields = [], onSubmit, initialValues = {} }) => {
                 id={name}
                 name={name}
                 value={formData[name] || ''}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, onChange)}
                 className="form-control"
               >
                 <option value="">Select</option>
@@ -44,7 +58,7 @@ const DynamicForm = ({ fields = [], onSubmit, initialValues = {} }) => {
                 id={name}
                 name={name}
                 value={formData[name] || ''}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, onChange)}
                 placeholder={placeholder}
                 className="form-control"
               />
@@ -54,14 +68,16 @@ const DynamicForm = ({ fields = [], onSubmit, initialValues = {} }) => {
                 type={type}
                 name={name}
                 value={formData[name] || ''}
-                onChange={handleChange}
+                onChange={(e) => handleChange(e, onChange)}
                 placeholder={placeholder}
                 className="form-control"
               />
             )}
+            {extraContent && <div className="mt-1">{extraContent}</div>}
           </div>
         </div>
       ))}
+
       <div className="form-group row">
         <div className="col-md-9 offset-md-3">
           <button type="submit" className="btn btn-primary">

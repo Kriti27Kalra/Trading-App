@@ -66,8 +66,16 @@ const Register = () => {
       if (err.response && err.response.status === 409) {
         alert('Email already exists. Please use a different one.');
       } else if (err.response && err.response.data.message) {
-        setError(err.response.data.message); // Display backend error message
-      } else {
+  const message = err.response.data.message;
+
+  if (message === 'Invalid Refer Code') {
+    alert('Invalid Refer Code');
+  } else {
+    setError(message); // Still show other messages in the form if needed
+  }
+}
+
+       else {
         console.error(err);
         setError('Registration failed. Please try again.');
       }
@@ -88,16 +96,7 @@ const Register = () => {
         </div>
       </header>
 
-      {/* Light-Dark Switch */}
-      <div className="lightdark-switch">
-        <span className="switch-btn" id="btnSwitch">
-          <img
-            src="/assets/images/icon/moon.svg"
-            alt="light-dark-switchbtn"
-            className="swtich-icon"
-          />
-        </span>
-      </div>
+     
 
       {/* Page Header */}
       <section
@@ -241,8 +240,7 @@ const Register = () => {
                      </div>
 
 
-                    {/* Error message */}
-                    {error && <div className="alert alert-danger mt-3">{error}</div>}
+                  
 
                     {/* Button with loading state */}
                     <button

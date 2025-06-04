@@ -11,11 +11,7 @@ function Header() {
       */}
 
       
-  <div className="lightdark-switch">
-    <span className="switch-btn" id="btnSwitch"><img src="/assets/images/icon/moon.svg" alt="light-dark-switchbtn"
-        className="swtich-icon"/></span>
-  </div>
-
+ 
 
 
 
@@ -32,166 +28,8 @@ function Header() {
           <div className="menu-area">
             <ul className="menu menu--style1">
               <li className="megamenu">
-                <a href="#">Demos </a>
-                <ul className="submenu">
-                  <li>
-                    <div className="home-showcase">
-                      <div className="row g-4 row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
-                        <div className="col order-first">
-                          <div className="home-showcase__item">
-                            <div className="home-showcase__image">
-                              <img src="/assets/images/demo/1.png" alt="home-showcase"/>
-                              <div className="home-showcase__buttons">
-                                <a href="index6a08.html?theme=light"
-                                  className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></a>
-                              </div>
-                            </div>
-                            <h3 className="home-showcase__title"><a href="index6a08.html?theme=light">Stock Trading</a>
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="col">
-                          <div className="home-showcase__item">
-                            <div className="home-showcase__image">
-                              <img src="/assets/images/demo/1-dark.png" alt="home-showcase"/>
-                              <div className="home-showcase__buttons">
-                                <a href="index4965.html?theme=dark"
-                                  className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></a>
-                              </div>
-                            </div>
-                            <h3 className="home-showcase__title"><a href="index4965.html?theme=dark">Stock Trading Dark</a>
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="col">
-                          <div className="home-showcase__item">
-                            <div className="home-showcase__image">
-                              <img src="/assets/images/demo/2.png" alt="home-showcase"/>
-                              <div className="home-showcase__buttons">
-                                <a href="index-26a08.html?theme=light"
-                                  className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></a>
-                              </div>
-                            </div>
-                            <h3 className="home-showcase__title"> <a href="index-26a08.html?theme=light">Crypto Trading</a>
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="col">
-                          <div className="home-showcase__item">
-                            <div className="home-showcase__image">
-                              <img src="/assets/images/demo/2-dark.png" alt="home-showcase"/>
-                              <div className="home-showcase__buttons">
-                                <a href="index-24965.html?theme=dark"
-                                  className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></a>
-                              </div>
-                            </div>
-                            <h3 className="home-showcase__title"> <a href="index-24965.html?theme=dark">Crypto Trading Dark</a>
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="col">
-                          <div className="home-showcase__item">
-                            <div className="home-showcase__image">
-                              <img src="/assets/images/demo/3.png" alt="home-showcase"/>
-                              <div className="home-showcase__buttons">
-                                <a href="index-36a08.html?theme=light"
-                                  className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></a>
-                              </div>
-                            </div>
-                            <h3 className="home-showcase__title"><a href="index-36a08.html?theme=light">Forex Trading</a>
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="col">
-                          <div className="home-showcase__item">
-                            <div className="home-showcase__image">
-                              <img src="/assets/images/demo/3-dark.png" alt="home-showcase"/>
-                              <div className="home-showcase__buttons">
-                                <a href="index-34965.html?theme=dark"
-                                  className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></a>
-                              </div>
-                            </div>
-                            <h3 className="home-showcase__title"><a href="index-34965.html?theme=dark">Forex Trading Dark</a>
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="col">
-                          <div className="home-showcase__item">
-                            <div className="home-showcase__image">
-                              <img src="/assets/images/demo/4.png" alt="home-showcase"/>
-                              <div className="home-showcase__badge">
-                                <span>New</span>
-                              </div>
-                              <div className="home-showcase__buttons">
-                                <a href="index-46a08.html?theme=light"
-                                  className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></a>
-                              </div>
-                            </div>
-                            <h3 className="home-showcase__title"><a href="index-46a08.html?theme=light">Day Trading</a>
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="col">
-                          <div className="home-showcase__item">
-                            <div className="home-showcase__image">
-                              <img src="/assets/images/demo/4-dark.png" alt="home-showcase"/>
-                              <div className="home-showcase__badge">
-                                <span>New</span>
-                              </div>
-                              <div className="home-showcase__buttons">
-                                <a href="index-44965.html?theme=dark"
-                                  className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></a>
-                              </div>
-                            </div>
-                            <h3 className="home-showcase__title"><a href="index-44965.html?theme=dark">Day Trading Dark</a>
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="col">
-                          <div className="home-showcase__item">
-                            <div className="home-showcase__image">
-                              <img src="/assets/images/demo/5.png" alt="home-showcase"/>
-                              <div className="home-showcase__badge">
-                                <span>New</span>
-                              </div>
-                              <div className="home-showcase__buttons">
-                                <a href="index-56a08.html?theme=light"
-                                  className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></a>
-                              </div>
-                            </div>
-                            <h3 className="home-showcase__title"><a href="index-56a08.html?theme=light">Trading Platform</a>
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="col">
-                          <div className="home-showcase__item">
-                            <div className="home-showcase__image">
-                              <img src="/assets/images/demo/5-dark.png" alt="home-showcase"/>
-                              <div className="home-showcase__badge">
-                                <span>New</span>
-                              </div>
-                              <div className="home-showcase__buttons">
-                                <a href="index-54965.html?theme=dark"
-                                  className="trk-btn trk-btn--primary home-showcase__buttons-item mt-3"><span>Preview</span></a>
-                              </div>
-                            </div>
-                            <h3 className="home-showcase__title"><a href="index-54965.html?theme=dark">Trading Platform Dark</a>
-                            </h3>
-                          </div>
-                        </div>
-                        <div className="col order-last">
-                          <div className="home-showcase__item">
-                            <div className="home-showcase__image">
-                              <img src="/assets/images/demo/new.png" alt="home-showcase"/>
-                            </div>
-                            <h3 className="home-showcase__title"> <a href="#">New Demos</a>
-                            </h3>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                <a href="#">Home </a>
+                
               </li>
               <li>
                 <a href="#">Services</a>
@@ -236,7 +74,7 @@ function Header() {
           <div className="header-action">
             <div className="menu-area">
               <div className="header-btn">
-                <a href="signup.html" className="trk-btn trk-btn--border trk-btn--primary ">
+                <a href="/register" className="trk-btn trk-btn--border trk-btn--primary ">
                   <span>Join Now</span>
                 </a>
               </div>

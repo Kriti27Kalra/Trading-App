@@ -40,7 +40,7 @@ const [alertMessage, setAlertMessage] = useState(null);
     .then(data => {
       if (data.success) {
         setAlertMessage({ type: "success", message: "User updated successfully" });
-        setTimeout(() => navigate("/admin/userslist") ,4000);
+        setTimeout(() => navigate("/admin/userslist") ,2000);
       } else {
         setAlertMessage({ type: "error", message: "Update failed" });
       }

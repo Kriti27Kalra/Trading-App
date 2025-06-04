@@ -7,33 +7,6 @@ function UsersList() {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 5;
 
-  const fetchUsers = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/admin/users`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          const updatedUsers = data.users.map((user) => ({
-            ...user,
-            status: (
-              <button
-                className={`btn btn-sm ${user.status === "active" ? "btn-success" : "btn-secondary"}`}
-                onClick={() => toggleStatus(user.id, user.status)}
-              >
-                {user.status}
-              </button>
-            ),
-            action: (
-              <Link to={`/admin/userslist/userediting/${user.id}`} className="link-style">
-                Edit
-              </Link>
-            ),
-          }));
-          setUsers(updatedUsers);
-        }
-      })
-      .catch((err) => console.error(err));
-  };
-
   const toggleStatus = (userId, currentStatus) => {
     const newStatus = currentStatus === "active" ? "inactive" : "active";
     fetch(`${process.env.REACT_APP_API_URL}/admin/users/${userId}/status`, {
@@ -44,24 +17,62 @@ function UsersList() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          fetchUsers();
+          fetchUsers(); 
         }
       })
       .catch((err) => console.error("Status update failed", err));
+  };
+
+  const fetchUsers = () => {
+    fetch(`${process.env.REACT_APP_API_URL}/admin/users`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Fetched users:", data.users);
+        if (data.success) {
+          const updatedUsers = data.users.map((user) => ({
+  ...user,
+  name: user.name || `${user.first_name} ${user.last_name}`,
+  status: (
+    <button
+      className={`btn btn-sm ${user.status === "active" ? "btn-success" : "btn-secondary"}`}
+      onClick={() => toggleStatus(user.id, user.status)}
+    >
+      {user.status}
+    </button>
+  ),
+  created_at: new Date(user.created_at).toLocaleString(),
+
+  action: (
+    <Link to={`/admin/userslist/userediting/${user.id}`} className="link-style">
+      Edit
+    </Link>
+  ),
+}));
+
+          setUsers(updatedUsers);
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   useEffect(() => {
     fetchUsers();
   }, []);
 
-  const columns = [
-    { label: "ID", accessor: "id" },
-    { label: "First Name", accessor: "first_name" },
-    { label: "Last Name", accessor: "last_name" },
-    { label: "Email", accessor: "email" },
-    { label: "Status", accessor: "status" },
-    { label: "Action", accessor: "action" },
-  ];
+
+
+
+ const columns = [
+  { label: "ID", accessor: "id" },              
+  { label: "USER_ID", accessor: "refer_code" }, 
+  { label: "Name", accessor: "name" },
+  { label: "Email", accessor: "email" },
+  { label: "Registration Time", accessor: "created_at" }, 
+  { label: "Status", accessor: "status" },
+  { label: "Action", accessor: "action" },
+];
+
+
 
   // Pagination logic
   const indexOfLastRow = currentPage * rowsPerPage;
@@ -84,9 +95,20 @@ function UsersList() {
                   <nav aria-label="breadcrumb" role="navigation">
                     <ol className="breadcrumb">
                       <li className="breadcrumb-item">
-                        <a href="/" className="text-dark" style={{ fontWeight: '400' }}>Home</a>
+                        <a
+                          href="/"
+                          className="text-dark"
+                          style={{ fontWeight: "400" }}
+                        >
+                          Home
+                        </a>
                       </li>
-                      <li className="breadcrumb-item text-primary active" aria-current="page">My Table</li>
+                      <li
+                        className="breadcrumb-item text-primary active"
+                        aria-current="page"
+                      >
+                        My Table
+                      </li>
                     </ol>
                   </nav>
                 </div>
@@ -97,7 +119,7 @@ function UsersList() {
               <div className="clearfix mb-20">
                 <div className="pull-left">
                   <h4 className="text-primary h4">Registered Users</h4>
-                  <p>Add <code>.table-bordered .table-hover</code> to style table.</p>
+                  
                 </div>
               </div>
 
@@ -108,21 +130,26 @@ function UsersList() {
               <div className="d-flex justify-content-between align-items-center mt-3">
                 <button
                   className="btn btn-outline-primary btn-sm"
-                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.max(prev - 1, 1))
+                  }
                   disabled={currentPage === 1}
                 >
                   Previous
                 </button>
-                <span>Page {currentPage} of {totalPages}</span>
+                <span>
+                  Page {currentPage} of {totalPages}
+                </span>
                 <button
                   className="btn btn-outline-primary btn-sm"
-                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  onClick={() =>
+                    setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+                  }
                   disabled={currentPage === totalPages}
                 >
                   Next
                 </button>
               </div>
-
             </div>
           </div>
         </div>

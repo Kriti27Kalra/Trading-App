@@ -24,6 +24,27 @@ const getProfile = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 };
+// GET /api/users/:id - get user by ID without auth (for public dashboard)
+const getUserById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const [users] = await db.promise().query(
+      "SELECT id, first_name, last_name, email, refer_code FROM users WHERE id = ?",
+      [id]
+    );
+
+    if (users.length === 0) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    res.json({ success: true, user: users[0] });
+  } catch (err) {
+    console.error("Error in getUserById:", err);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
 
 // PUT update profile
 const updateProfile = async (req, res) => {
@@ -76,9 +97,48 @@ const getReferredUsers = async (req, res) => {
     res.status(500).json({ success: false, message: 'Server error' });
   }
 };
+// Get total active and inactive users
+const getUserStatusCounts = async (req, res) => {
+  try {
+    const [rows] = await db.promise().query(
+      `SELECT 
+         SUM(CASE WHEN status = 'active' THEN 1 ELSE 0 END) AS activeCount,
+         SUM(CASE WHEN status = 'inactive' THEN 1 ELSE 0 END) AS inactiveCount
+       FROM users`
+    );
+    res.json({ success: true, ...rows[0] });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Failed to get user status counts' });
+  }
+};
+
+const getUserByReferCode = async (req, res) => {
+  try {
+    const { referCode } = req.params;
+    const [rows] = await db.promise().query(
+      "SELECT id, first_name, last_name FROM users WHERE refer_code = ?",
+      [referCode]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    return res.status(200).json({ success: true, user: rows[0] });
+  } catch (error) {
+    console.error("Error fetching user by refer code:", error);
+    return res.status(500).json({ success: false, message: "Server error" });
+  }
+};
+
 
 module.exports = {
   getProfile,
   updateProfile,
-  getReferredUsers
+  getReferredUsers,
+  getUserStatusCounts,
+   getUserById,
+  getUserByReferCode
 };
+

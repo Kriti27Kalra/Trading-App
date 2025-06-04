@@ -20,7 +20,7 @@ exports.register = async (req, res) => {
     // Validate referred_by_code
     const [referrer] = await db.promise().query('SELECT id FROM users WHERE refer_code = ?', [referred_by_code]);
     if (referrer.length === 0) {
-      return res.status(400).json({ message: 'Invalid referred_by_code' });
+      return res.status(400).json({ message: 'Invalid Refer Code' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -39,7 +39,7 @@ exports.register = async (req, res) => {
 
     // Insert new user with unique refer_code
     const [result] = await db.promise().query(
-      'INSERT INTO users (first_name, last_name, email, password, referred_by_code, refer_code, wallet) VALUES (?, ?, ?, ?, ?, ?)',
+      'INSERT INTO users (first_name, last_name, email, password, referred_by_code, refer_code, wallet) VALUES (?, ?, ?, ?, ?, ?, ?)',
       [firstName, lastName, email, hashedPassword, referred_by_code, userIdCode, 0]
     );
 

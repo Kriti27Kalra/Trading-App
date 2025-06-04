@@ -18,6 +18,8 @@ router.put('/users/:id/status', adminController.updateUserStatus);
 // Custom user edit route
 router.get("/userslist/userediting/:id", adminController.getUserById);
 router.put("/userslist/userediting/:id", adminController.updateUserById);
+router.get('/team-count/:referCode', adminController.getTeamCountByReferCode);
+
 
 
 module.exports = router;

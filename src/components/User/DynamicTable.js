@@ -13,13 +13,17 @@ const DynamicTable = ({ columns = [], data = [] }) => {
       <tbody>
         {data.length === 0 ? (
           <tr>
-            <td colSpan={columns.length} className="text-center">No data available</td>
+            <td colSpan={columns.length} className="text-center">
+              No records found
+            </td>
           </tr>
         ) : (
           data.map((row, rowIndex) => (
             <tr key={rowIndex}>
-              {columns.map((col, colIndex) => (
-                <td key={colIndex}>{row[col.accessor]}</td>
+              {columns.map(({ accessor, cell }, colIndex) => (
+                <td key={colIndex}>
+                  {cell ? cell(row[accessor]) : row[accessor]}
+                </td>
               ))}
             </tr>
           ))
