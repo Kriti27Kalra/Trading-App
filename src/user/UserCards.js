@@ -47,7 +47,7 @@ const UserCards = () => {
   const cardData = [
     {
       chartId: null,
-      value: walletAmount ? `₹${walletAmount.toFixed(2)}` : 'Loading...',
+value: `₹${walletAmount.toFixed(2)}`,
       label: 'Wallet',
       isLink: true,
       link: '/user/wallethistory',
