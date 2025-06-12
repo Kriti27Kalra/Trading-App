@@ -47,7 +47,7 @@ const Register = () => {
     setLoading(true); // Set loading to true when the registration starts
 
     try {
-      const response = await axios.post('http://localhost:5000/api/register', {
+      const response = await axios.post('https://notedownplease.com/api/register', {
         firstName,
         lastName, // can be blank
         email,
