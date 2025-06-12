@@ -13,7 +13,7 @@ const UserDashboard = () => {
   useEffect(() => {
     if (userId) {
       // Fetch user data by userId
-      axios.get(`${process.env.REACT_APP_API_URL}/users/${userId}`)
+      axios.get(`http://localhost:5000/api/users/${userId}`)
         .then(res => {
           const user = res.data;
           setUsername(user.name || "User");
