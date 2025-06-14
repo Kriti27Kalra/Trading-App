@@ -20,8 +20,8 @@ const isAdminLogin = location.pathname === "/admin/login";
   try {
  const baseURL = process.env.REACT_APP_API_URL;
     const url = isAdminLogin
-      ? `${baseURL}/api/admin/login`
-      : `${baseURL}/api/login`;
+      ? `${baseURL}/admin/login`
+      : `${baseURL}/login`;
 
     const res = await axios.post(url, { email, password });
 
