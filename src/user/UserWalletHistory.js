@@ -6,35 +6,47 @@ const UserWalletHistory = () => {
   const [walletHistory, setWalletHistory] = useState([]);
 
   const columns = [
-  { label: 'Date', accessor: 'date' },
-  { label: 'Time', accessor: 'time' },
-  { label: 'Type', accessor: 'type' },
-  { label: 'Amount', accessor: 'amount' },
   { label: 'From ID', accessor: 'from_refer_code' },
-  { label: 'To ID', accessor: 'to_refer_code' }
+  { label: 'To ID', accessor: 'to_refer_code' },
+  { label: 'Amount', accessor: 'amount' },
+  { label: 'Type', accessor: 'type' },
+  { label: 'Date', accessor: 'date' },
+  { label: 'Time', accessor: 'time' }
 ];
+
 
 
   useEffect(() => {
   if (user?.refer_code) {
-    const encodedReferCode = encodeURIComponent(user.refer_code); // encode colon and special chars
+    const encodedReferCode = encodeURIComponent(user.refer_code); 
 fetch(`${process.env.REACT_APP_API_URL}/wallet/history/${encodedReferCode}`)
       .then(res => {
         if (!res.ok) throw new Error(`Failed to fetch: ${res.status}`);
         return res.json();
       })
      .then(data => {
-  console.log('Raw wallet history data:', data);  // <-- Add this to inspect data
-  const formattedData = data.map(item => {
-    const d = new Date(item.created_at);
-    return {
-      ...item,
-      date: d.toISOString().slice(0, 10),
-      time: d.toTimeString().slice(0, 8),
-      from_refer_code: (item.from === 'admin' || item.from_refer_code === null) ? 'Admin' : item.from_refer_code,
-      to_refer_code: (item.to === 'admin' || item.to_refer_code === null) ? 'Admin' : item.to_refer_code,
-    };
-  });
+ const formattedData = data.map(item => {
+  const d = new Date(item.created_at);
+  const isReward = item.type === 'reward' || item.from === 'system';
+
+  return {
+    ...item,
+    date: d.toISOString().slice(0, 10),
+    time: d.toTimeString().slice(0, 8),
+    amount: `$${parseFloat(item.amount).toFixed(2)}`,
+    type: isReward ? 'Reward' : item.type,
+   from_refer_code: item.from === 'system'
+  ? `${item.trigger_user_code || 'N/A'} (ID: ${item.from_user_id || 'N/A'})`
+  : (item.from === 'admin'
+      ? 'Admin'
+      : `${item.from || 'N/A'} (ID: ${item.from_user_id || 'N/A'})`),
+
+    to_refer_code: item.to_refer_code || 'N/A',
+
+  };
+});
+
+
   setWalletHistory(formattedData);
 })
 

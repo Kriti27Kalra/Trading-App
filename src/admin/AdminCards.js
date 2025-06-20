@@ -12,7 +12,7 @@ const AdminCards = ({ userCount }) => {
   useEffect(() => {
   axios.get(`${process.env.REACT_APP_API_URL}/wallet/total-wallet`)
     .then((res) => {
-      console.log('total-wallet response:', res.data);  // Debug log
+      console.log('total-wallet response:', res.data);  
       if (res.data.success) {
         setTotalWallet(Number(res.data.totalWallet));
       } else if (res.data.totalWallet !== undefined) {

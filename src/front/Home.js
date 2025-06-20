@@ -5,6 +5,7 @@ function Home() {
   const navigate = useNavigate(); 
 
   return (
+    
     <div className="overflow-hidden">
       <section className="banner banner--style1">
         <div className="banner__bg">
@@ -91,25 +92,28 @@ function Home() {
         </div>
       </section>
 
-      <div className="partner partner--gradient">
-        <div className="container">
-          <div className="partner__wrapper">
-            <div className="partner__slider swiper">
-              <div className="swiper-wrapper">
-                {['1', '2', '3', '4', '5'].map(num => (
-                  <div className="swiper-slide" key={num}>
-                    <div className="partner__item">
-                      <div className="partner__item-inner">
-                        <img src={`/assets/images/partner/light/${num}.png`} alt="partner logo" className="dark" />
-                      </div>
-                    </div>
-                  </div>
-                ))}
+      <div className="partner partner--gradient py-4">
+  <div className="container">
+    <div className="partner__wrapper">
+      <div className="row justify-content-center text-center g-3">
+        {['1', '2', '3', '4', '5'].map(num => (
+          <div className="col-6 col-sm-2" key={num}>
+            <div className="partner__item">
+              <div className="partner__item-inner">
+                <img
+                  src={`/assets/images/partner/light/${num}.png`}
+                  alt="partner logo"
+                  className="img-fluid dark"
+                />
               </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
+    </div>
+  </div>
+</div>
+
     </div>
   );
 }

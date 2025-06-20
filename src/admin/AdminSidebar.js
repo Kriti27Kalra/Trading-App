@@ -54,6 +54,20 @@ const AdminSidebar = () => {
 
                 </ul>
               </li>
+              <li>
+                <a href="#" className="dropdown-toggle">
+                  <span className="micon dw dw-notification" /><span className="mtext">Alert</span>
+                   </a>
+                   <ul className="submenu">
+                  <li><a href="/admin/create-alert">Create Alert</a></li>
+                  <li><a href="/admin/edit-alertlist">Edit Alert</a></li>
+                  <li><a href="/admin/alert-history">Alert History</a></li>
+
+
+
+                </ul>
+                
+              </li>
              
               
              

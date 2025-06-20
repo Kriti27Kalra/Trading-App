@@ -1,6 +1,8 @@
 const db = require('../config/db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const { rewardReferrer } = require('./wallet.controller');
+
 
 // Register
 exports.register = async (req, res) => {
@@ -38,10 +40,16 @@ exports.register = async (req, res) => {
     }
 
     // Insert new user with unique refer_code
-    const [result] = await db.promise().query(
-      'INSERT INTO users (first_name, last_name, email, password, referred_by_code, refer_code, wallet) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [firstName, lastName, email, hashedPassword, referred_by_code, userIdCode, 0]
-    );
+    // Insert new user with unique refer_code
+const [result] = await db.promise().query(
+  'INSERT INTO users (first_name, last_name, email, password, referred_by_code, refer_code, wallet) VALUES (?, ?, ?, ?, ?, ?, ?)',
+  [firstName, lastName, email, hashedPassword, referred_by_code, userIdCode, 0]
+);
+
+const newUserId = result.insertId;
+
+// ✅ Pass newUserId to rewardReferrer
+await rewardReferrer(referred_by_code, newUserId);
 
     res.status(201).json({
       message: 'User registered successfully',
@@ -54,6 +62,8 @@ exports.register = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+
+
 
 
 // Login

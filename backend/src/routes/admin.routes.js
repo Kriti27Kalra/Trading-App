@@ -19,6 +19,7 @@ router.put('/users/:id/status', adminController.updateUserStatus);
 router.get("/userslist/userediting/:id", adminController.getUserById);
 router.put("/userslist/userediting/:id", adminController.updateUserById);
 router.get('/team-count/:referCode', adminController.getTeamCountByReferCode);
+router.get("/userdashboard/:identifier", adminController.getUserByIdOrReferCode);
 
 
 

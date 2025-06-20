@@ -2,20 +2,19 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import DynamicCard from '../components/User/DynamicCard';
 
-const UserCards = () => {
+const UserCards = ({ referCode }) => {
   const storedUser = localStorage.getItem('user');
-  const user = storedUser ? JSON.parse(storedUser) : null; // safe parsing
-  const refer_code = user?.refer_code;
+  const user = storedUser ? JSON.parse(storedUser) : null;
+  const actualReferCode = referCode || user?.refer_code;
 
   const [teamCount, setTeamCount] = useState(0);
   const [walletAmount, setWalletAmount] = useState(0);
 
   useEffect(() => {
-    if (!refer_code) return;  // exit early if no refer_code
+    if (!actualReferCode) return;
 
-    // Fetch team count
     axios
-      .get(`${process.env.REACT_APP_API_URL}/admin/team-count/${refer_code}`)
+      .get(`${process.env.REACT_APP_API_URL}/admin/team-count/${actualReferCode}`)
       .then((res) => {
         if (res.data.success) {
           setTeamCount(res.data.teamCount);
@@ -25,36 +24,39 @@ const UserCards = () => {
         console.error("Failed to fetch team count:", err);
       });
 
-    // Fetch wallet amount
     axios
-  .get(`${process.env.REACT_APP_API_URL}/wallet/balance/${refer_code}`)
-  .then((res) => {
-    // res.data = { wallet: <amount> }
-    if (res.data.wallet !== undefined) {
-      setWalletAmount(Number(res.data.wallet));
-    }
-  })
-  .catch((err) => {
-    console.error("Failed to fetch wallet amount:", err);
-  });
-
-  }, [refer_code]); // depend on stable string, not object property
-
-  if (!user) {
-    return <div>Please login first to view your dashboard.</div>;
-  }
+      .get(`${process.env.REACT_APP_API_URL}/wallet/balance/${actualReferCode}`)
+      .then((res) => {
+        if (res.data.wallet !== undefined) {
+          setWalletAmount(Number(res.data.wallet));
+        }
+      })
+      .catch((err) => {
+        console.error("Failed to fetch wallet amount:", err);
+      });
+  }, [actualReferCode]);
 
   const cardData = [
     {
       chartId: null,
-value: `₹${walletAmount.toFixed(2)}`,
+      value: `₹${walletAmount.toFixed(2)}`,
       label: 'Wallet',
       isLink: true,
       link: '/user/wallethistory',
     },
     { chartId: 'chart4', value: '$6060', label: 'Worth' },
-    { chartId: null, value: refer_code || 'No ID yet', label: 'My Referral Code' },
-    { chartId: null, value: teamCount, label: 'My Team', isLink: true, link: '/user/teamtable' },
+    {
+      chartId: null,
+      value: actualReferCode || 'No ID yet',
+      label: 'My Referral Code',
+    },
+    {
+      chartId: null,
+      value: teamCount,
+      label: 'My Team',
+      isLink: true,
+      link: '/user/teamtable',
+    },
   ];
 
   return (

@@ -133,12 +133,51 @@ const getUserByReferCode = async (req, res) => {
 };
 
 
+const getUserByIdOrReferCode = async (req, res) => {
+  const { identifier } = req.params;
+
+  try {
+    let queryResult;
+
+    if (!isNaN(identifier)) {
+      // It's a number, treat it as user ID
+      const [byId] = await db.promise().query(
+        "SELECT * FROM users WHERE id = ?",
+        [identifier]
+      );
+      if (byId.length > 0) {
+        return res.json({ success: true, user: byId[0] });
+      }
+    }
+
+    // If not a number or ID not found, check refer code
+    const [byRefer] = await db.promise().query(
+      "SELECT * FROM users WHERE refer_code = ?",
+      [identifier]
+    );
+    if (byRefer.length > 0) {
+      return res.json({ success: true, user: byRefer[0] });
+    }
+
+    return res.status(404).json({ success: false, message: "User not found" });
+  } catch (err) {
+    console.error("Error in getUserByIdOrReferCode:", err);
+    res.status(500).json({ success: false, message: "Error fetching user" });
+  }
+};
+
+
+
+
+
 module.exports = {
   getProfile,
   updateProfile,
   getReferredUsers,
   getUserStatusCounts,
    getUserById,
-  getUserByReferCode
+  getUserByReferCode,
+  getUserByIdOrReferCode
+  
 };
 

@@ -18,6 +18,11 @@ import UserEditing from "./admin/UserEditing";
 import AdminWallet from "./admin/AdminWallet";
 import UserWalletHistory from "./user/UserWalletHistory";
 import AdminWalletHistory from "./admin/AdminWalletHistory";
+import CreateAlert from "./admin/CreateAlert";
+import Timeline from "./user/Timeline";
+import AdminAlertHistory from "./admin/AdminAlertHistory";
+import EditAlertList from "./admin/EditAlertList";
+import EditAlert from "./admin/EditAlert";
 
 function App() {
   const location = useLocation();
@@ -50,10 +55,12 @@ function App() {
           <Route path="/user/editform" element={<EditForm />} />
           <Route path="/user/teamtable" element={<TeamTable />} />
           <Route path="/user/wallethistory" element={<UserWalletHistory />} />
+          <Route path="/user/timeline" element={<Timeline />} />
 
 
 
         </Route>
+
 
         {/* Protected Admin dashboard layout routes */}
         <Route
@@ -70,12 +77,24 @@ function App() {
 
           <Route path="/admin/wallet" element={<AdminWallet />} />
           <Route path="/admin/wallet-history" element={<AdminWalletHistory />} />
+          <Route path="/admin/create-alert" element={<CreateAlert />} />
+          <Route path="/admin/alert-history" element={<AdminAlertHistory />} />
+          <Route path="/admin/edit-alertlist/" element={<EditAlertList />} />
+          <Route path="/admin/edit-alert/:id" element={<EditAlert />} />
+
+
+
+
+           <Route path="/user/dashboard/:userId" element={<UserDashboard />} />
+
+
 
 
 
 
 
         </Route>
+
       </Routes>
     </div>
   );

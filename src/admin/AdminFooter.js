@@ -1,19 +1,16 @@
 import React from 'react';
 
 function AdminFooter() {
+  const footerText = process.env.REACT_APP_FOOTER_TEXT;
+
   return (
     <footer>
-        <div className="pd-ltr-20">
-<div className="footer-wrap pd-20 mb-20 card-box">
-  DeskApp - Bootstrap 4 Admin Template 
-  
-</div>
-</div>
-</footer>
-
-
-
- 
+      <div className="pd-ltr-20">
+        <div className="footer-wrap pd-20 mb-20 card-box text-center">
+          {footerText}
+        </div>
+      </div>
+    </footer>
   );
 }
 

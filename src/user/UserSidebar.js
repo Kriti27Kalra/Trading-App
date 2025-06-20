@@ -10,7 +10,6 @@ const UserSidebar = () => {
       <div className="left-side-bar">
         <div className="brand-logo">
           <a href="/user/dashboard">
-            <img src="/vendors/images/deskapp-logo.svg" alt="" className="dark-logo" />
             <img src="/vendors/images/deskapp-logo-white.svg" alt="" className="light-logo" />
           </a>
           <div className="close-sidebar" data-toggle="left-sidebar-close">

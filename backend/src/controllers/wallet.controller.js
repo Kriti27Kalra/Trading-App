@@ -18,6 +18,37 @@ exports.getAllUsers = async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch users' });
   }
 };
+// reward referrer
+exports.rewardReferrer = async (referred_by_code, newUserId) => {
+  try {
+    const [referrer] = await db.promise().query(
+      'SELECT id FROM users WHERE refer_code = ?',
+      [referred_by_code]
+    );
+
+    if (referrer.length === 0) {
+      throw new Error('Referrer not found');
+    }
+
+    const referrerId = referrer[0].id;
+
+    // Update referrer's wallet
+    await db.promise().query(
+      'UPDATE users SET wallet = wallet + 5 WHERE id = ?',
+      [referrerId]
+    );
+
+    // Log to wallet_history with from_user_id = new user
+    await db.promise().query(
+      'INSERT INTO wallet_history (`from`, to_refer_code, amount, type, from_user_id, trigger_user_code) VALUES (?, ?, ?, ?, ?, ?)',
+      ['system', referred_by_code, 5, 'add', newUserId, referred_by_code]
+    );
+
+  } catch (err) {
+    console.error('Reward referrer error:', err);
+  }
+};
+
 
 // Add money to user's wallet
 exports.addToWallet = async (req, res) => {
@@ -62,25 +93,19 @@ exports.getWalletHistory = async (req, res) => {
   const { refer_code } = req.params;
 
   try {
-    // Check if user exists
-    const [userRows] = await db.promise().query(
-      'SELECT id FROM users WHERE refer_code = ?',
-      [refer_code]
-    );
-
-    if (userRows.length === 0) {
-      return res.status(404).json({ success: false, message: 'User not found for refer_code: ' + refer_code });
-    }
-
-    // Fetch wallet history by to_refer_code (string), no join on to_user_id
     const [history] = await db.promise().query(
-      `SELECT wh.*
+      `SELECT 
+         wh.*, 
+         u.id AS from_user_id, 
+         u.refer_code AS trigger_user_code
        FROM wallet_history wh
+       LEFT JOIN users u ON wh.from_user_id = u.id
        WHERE wh.to_refer_code = ?
        ORDER BY wh.created_at DESC`,
       [refer_code]
     );
 
+    console.log("Sending wallet history:", history);
     res.json(history);
   } catch (error) {
     console.error('Error fetching wallet history:', error);

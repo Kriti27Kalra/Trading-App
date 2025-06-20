@@ -87,6 +87,18 @@ User.getTeamCountByReferCode = (referCode, callback) => {
     }
   );
 };
+// Get user by refer_code (callback style)
+User.getUserByReferCode = (referCode, callback) => {
+  db.query(
+    "SELECT id, first_name, last_name, email, status, refer_code, created_at FROM users WHERE refer_code = ?",
+    [referCode],
+    (err, results) => {
+      if (err) return callback(err);
+      callback(null, results);
+    }
+  );
+};
+
 
 
 module.exports = User;

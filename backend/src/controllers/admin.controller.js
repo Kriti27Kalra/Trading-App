@@ -81,3 +81,24 @@ exports.getWalletHistoryByReferCode = (req, res) => {
 };
 
 
+exports.getUserByIdOrReferCode = (req, res) => {
+  const { identifier } = req.params;
+
+  User.getUserById(identifier, (err, resultsById) => {
+    if (err) return res.status(500).json({ success: false, message: "Database error (ID)" });
+
+    if (resultsById.length > 0) {
+      return res.json({ success: true, user: resultsById[0] });
+    }
+
+    User.getUserByReferCode(identifier, (err2, resultsByRefer) => {
+      if (err2) return res.status(500).json({ success: false, message: "Database error (refer_code)" });
+
+      if (resultsByRefer.length > 0) {
+        return res.json({ success: true, user: resultsByRefer[0] });
+      }
+
+      return res.status(404).json({ success: false, message: "User not found" });
+    });
+  });
+};

@@ -29,9 +29,18 @@ function UsersList() {
       .then((data) => {
         console.log("Fetched users:", data.users);
         if (data.success) {
-          const updatedUsers = data.users.map((user) => ({
+         const updatedUsers = data.users.map((user) => ({
   ...user,
   name: user.name || `${user.first_name} ${user.last_name}`,
+  refer_code: (
+    <Link
+      to={`/user/dashboard/${user.id}`}
+      className="text-primary"
+      style={{  cursor: "pointer" }}
+    >
+      {user.refer_code}
+    </Link>
+  ),
   status: (
     <button
       className={`btn btn-sm ${user.status === "active" ? "btn-success" : "btn-secondary"}`}
@@ -41,7 +50,6 @@ function UsersList() {
     </button>
   ),
   created_at: new Date(user.created_at).toLocaleString(),
-
   action: (
     <Link to={`/admin/userslist/userediting/${user.id}`} className="link-style">
       Edit
