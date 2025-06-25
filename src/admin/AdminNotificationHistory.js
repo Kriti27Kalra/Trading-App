@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import DynamicTable from '../components/Admin/DynamicTable';
 import axios from 'axios';
 
-const AdminAlertHistory = () => {
-  const [alertHistory, setAlertHistory] = useState([]);
+const AdminNotificationHistory = () => {
+  const [notificationHistory, setNotificationHistory] = useState([]);
 
   const columns = [
     { label: 'Date', accessor: 'date' },
@@ -12,7 +12,7 @@ const AdminAlertHistory = () => {
   ];
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/alerts`)
+    axios.get(`${process.env.REACT_APP_API_URL}/notifications`)
       .then(res => {
         const formatted = res.data.map(item => {
           const d = new Date(item.created_at);
@@ -22,9 +22,9 @@ const AdminAlertHistory = () => {
             time: d.toTimeString().slice(0, 8),
           };
         });
-        setAlertHistory(formatted);
+        setNotificationHistory(formatted);
       })
-      .catch(err => console.error("Failed to load alert history", err));
+      .catch(err => console.error("Failed to load notification history", err));
   }, []);
 
   return (
@@ -35,14 +35,14 @@ const AdminAlertHistory = () => {
             <div className="row">
               <div className="col-md-6 col-sm-12">
                 <div className="title">
-                  <h4>Admin Alert History</h4>
+                  <h4>Admin Notification History</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                   <ol className="breadcrumb">
                     <li className="breadcrumb-item">
                       <a href="/admin/dashboard" className="text-dark" style={{ fontWeight: '400' }}>Dashboard</a>
                     </li>
-                    <li className="breadcrumb-item text-primary active" aria-current="page">Alert History</li>
+                    <li className="breadcrumb-item text-primary active" aria-current="page">Notification History</li>
                   </ol>
                 </nav>
               </div>
@@ -52,12 +52,12 @@ const AdminAlertHistory = () => {
           <div className="pd-20 card-box mb-30">
             <div className="clearfix mb-20">
               <div className="pull-left">
-                <h4 className="text-primary h4">Alert Log</h4>
-                <p>This table shows all alerts created by the admin.</p>
+                <h4 className="text-primary h4">Notification Log</h4>
+                <p>This table shows all notifications created by the admin.</p>
               </div>
             </div>
 
-            <DynamicTable columns={columns} data={alertHistory} />
+            <DynamicTable columns={columns} data={notificationHistory} />
           </div>
         </div>
       </div>
@@ -65,4 +65,4 @@ const AdminAlertHistory = () => {
   );
 };
 
-export default AdminAlertHistory;
+export default AdminNotificationHistory;

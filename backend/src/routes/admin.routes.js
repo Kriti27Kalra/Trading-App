@@ -2,8 +2,13 @@ const express = require("express");
 const router = express.Router();
 const adminController = require("../controllers/admin.controller");
 
+
+
 // Admin login
 router.post("/login", adminController.adminLogin);
+// ✅ Add this line at the appropriate position
+router.get('/status-counts', adminController.getUserStatusCounts);
+
 
 // Get all users
 router.get("/users", adminController.getAllUsers);
@@ -15,7 +20,9 @@ router.get("/users/:id", adminController.getUserById);
 router.put("/users/:id", adminController.updateUserById);
 router.put('/users/:id/status', adminController.updateUserStatus);
 
+
 // Custom user edit route
+
 router.get("/userslist/userediting/:id", adminController.getUserById);
 router.put("/userslist/userediting/:id", adminController.updateUserById);
 router.get('/team-count/:referCode', adminController.getTeamCountByReferCode);
@@ -24,3 +31,4 @@ router.get("/userdashboard/:identifier", adminController.getUserByIdOrReferCode)
 
 
 module.exports = router;
+

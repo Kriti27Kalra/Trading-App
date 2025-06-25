@@ -25,7 +25,7 @@ const AdminCards = ({ userCount }) => {
       console.error('Failed to fetch total wallet balance:', err);
     });
 
-  axios.get(`${process.env.REACT_APP_API_URL}/status-counts`)
+axios.get(`${process.env.REACT_APP_API_URL}/admin/status-counts`)
     .then((res) => {
       if (res.data.success) {
         setActiveCount(res.data.activeCount);

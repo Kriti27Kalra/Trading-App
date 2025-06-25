@@ -50,6 +50,16 @@ const UserSidebar = () => {
                   <span className="micon dw dw-wallet" /><span className="mtext">Wallet History</span>
                 </a>
               </li>
+               <li className="dropdown">
+                <a href="#" className="dropdown-toggle">
+                  <span className="micon dw dw-download2" /><span className="mtext">Withdrawal</span>
+                </a>
+                <ul className="submenu">
+                  <li><a href="/user/withdraw-form">Withdraw</a></li>
+                  <li><a href="/user/withdraw-history">Withdraw History</a></li>
+                 
+                </ul>
+              </li>
              
 
              

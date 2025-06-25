@@ -18,11 +18,14 @@ import UserEditing from "./admin/UserEditing";
 import AdminWallet from "./admin/AdminWallet";
 import UserWalletHistory from "./user/UserWalletHistory";
 import AdminWalletHistory from "./admin/AdminWalletHistory";
-import CreateAlert from "./admin/CreateAlert";
+import CreateNotification from "./admin/CreateNotification"
 import Timeline from "./user/Timeline";
-import AdminAlertHistory from "./admin/AdminAlertHistory";
-import EditAlertList from "./admin/EditAlertList";
-import EditAlert from "./admin/EditAlert";
+import AdminNotificationHistory from "./admin/AdminNotificationHistory";
+import EditNotificationList from "./admin/EditNotificationList";
+import EditNotification from "./admin/EditNotification";
+import WithdrawForm from "./user/WithdrawForm";
+import WithdrawHistory from "./user/WithdrawHistory";
+import AdminWithdrawRequests from "./admin/AdminWithdrawRequests";
 
 function App() {
   const location = useLocation();
@@ -56,6 +59,10 @@ function App() {
           <Route path="/user/teamtable" element={<TeamTable />} />
           <Route path="/user/wallethistory" element={<UserWalletHistory />} />
           <Route path="/user/timeline" element={<Timeline />} />
+          <Route path="/user/withdraw-form" element={<WithdrawForm />} />
+            <Route path="/user/withdraw-history" element={<WithdrawHistory />} />
+
+
 
 
 
@@ -77,10 +84,12 @@ function App() {
 
           <Route path="/admin/wallet" element={<AdminWallet />} />
           <Route path="/admin/wallet-history" element={<AdminWalletHistory />} />
-          <Route path="/admin/create-alert" element={<CreateAlert />} />
-          <Route path="/admin/alert-history" element={<AdminAlertHistory />} />
-          <Route path="/admin/edit-alertlist/" element={<EditAlertList />} />
-          <Route path="/admin/edit-alert/:id" element={<EditAlert />} />
+          <Route path="/admin/create-notification" element={<CreateNotification />} />
+          <Route path="/admin/notification-history" element={<AdminNotificationHistory />} />
+          <Route path="/admin/edit-notificationlist/" element={<EditNotificationList />} />
+          <Route path="/admin/edit-notification/:id" element={<EditNotification />} />
+          <Route path="/admin/withdraw-history" element={<AdminWithdrawRequests />} />
+
 
 
 

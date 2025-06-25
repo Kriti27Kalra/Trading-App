@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Timeline = () => {
-  const [alerts, setAlerts] = useState([]);
+  const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/alerts")
-      .then((res) => setAlerts(res.data))
-      .catch((err) => console.error("Error fetching alerts:", err));
+   
+axios.get("http://localhost:5000/api/notifications/active")
+  .then((res) => setNotifications(res.data))
+  .catch((err) => console.error("Error fetching notifications:", err));
+
   }, []);
 
   return (
@@ -38,26 +39,26 @@ const Timeline = () => {
           <div className="container pd-0">
             <div className="timeline mb-30">
               <ul>
-                {alerts.length === 0 ? (
+                {notifications.length === 0 ? (
                   <li>
-                    <div className="timeline-date">No alerts</div>
+                    <div className="timeline-date">No notifications</div>
                     <div className="timeline-desc card-box">
                       <div className="pd-20">No notifications found.</div>
                     </div>
                   </li>
                 ) : (
-                  alerts.map((alert) => (
-                    <li key={alert.id}>
+                  notifications.map((notification) => (
+                    <li key={notification.id}>
                       <div className="timeline-date">
-                        {new Date(alert.created_at).toLocaleString()}
+                        {new Date(notification.created_at).toLocaleString()}
                       </div>
                       <div className="timeline-desc card-box">
                         <div className="pd-20">
-                          <div
-                            dangerouslySetInnerHTML={{
-                              __html: alert.content,
-                            }}
-                          />
+                          <pre style={{ whiteSpace: "pre-wrap", margin: 0 }}>
+                           {notification.content}
+                             </pre>
+
+
                         </div>
                       </div>
                     </li>

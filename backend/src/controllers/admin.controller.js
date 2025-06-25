@@ -1,5 +1,7 @@
 const Admin = require("../models/admin.model");
 const User = require("../models/user.model");
+const { getUserStatusCounts } = require("./user.controller");
+
 
 exports.adminLogin = (req, res) => {
   const { email, password } = req.body;
@@ -102,3 +104,4 @@ exports.getUserByIdOrReferCode = (req, res) => {
     });
   });
 };
+exports.getUserStatusCounts = getUserStatusCounts;

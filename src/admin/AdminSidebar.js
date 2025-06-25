@@ -54,14 +54,30 @@ const AdminSidebar = () => {
 
                 </ul>
               </li>
+
+                       <li className="dropdown">
+                <a href="#" className="dropdown-toggle">
+                  <span className="micon dw dw-download2" /><span className="mtext">Withdrawal Requests</span>
+                </a>
+                <ul className="submenu">
+                  <li><a href="#">Pending Requests</a></li>
+                  <li><a href="#">Approved Requests</a></li>
+                  <li><a href="#">Rejected Requests</a></li>
+                  <li><a href="/admin/withdraw-history">Withdraw History</a></li>
+
+
+
+                </ul>
+              </li>
+
               <li>
                 <a href="#" className="dropdown-toggle">
-                  <span className="micon dw dw-notification" /><span className="mtext">Alert</span>
+                  <span className="micon dw dw-notification" /><span className="mtext">Notification</span>
                    </a>
                    <ul className="submenu">
-                  <li><a href="/admin/create-alert">Create Alert</a></li>
-                  <li><a href="/admin/edit-alertlist">Edit Alert</a></li>
-                  <li><a href="/admin/alert-history">Alert History</a></li>
+                  <li><a href="/admin/create-notification">Create Notification</a></li>
+                  <li><a href="/admin/edit-notificationlist">Edit Notification</a></li>
+                  <li><a href="/admin/notification-history">Notification History</a></li>
 
 
 

@@ -5,7 +5,8 @@ const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
 const adminRoutes = require('./routes/admin.routes');
 const walletRoutes = require('./routes/wallet.routes');
-const alertRoutes = require('./routes/alert.routes'); // <-- ✅ ADD THIS
+const notificationRoutes = require('./routes/notification.routes'); // ✅ updated import
+const withdrawRoutes = require("./routes/withdraw.routes");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use('/api', authRoutes);
 app.use('/api', userRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/wallet', walletRoutes);
-app.use('/api/alerts', alertRoutes); // <-- ✅ MOUNT HERE
+app.use('/api/notifications', notificationRoutes); // ✅ updated mount path
+app.use("/api/withdraw", withdrawRoutes);
 
 module.exports = app;
