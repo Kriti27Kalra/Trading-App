@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api', authRoutes);
-app.use('/api', userRoutes);
+app.use('/api/user', userRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/wallet', walletRoutes);
 app.use('/api/notifications', notificationRoutes); // ✅ updated mount path

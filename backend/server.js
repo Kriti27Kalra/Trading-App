@@ -14,12 +14,12 @@ const userRoutes = require('./src/routes/user.routes');
 const walletRoutes = require('./src/routes/wallet.routes');
 const notificationRoutes = require('./src/routes/notification.routes'); 
 const withdrawRoutes = require('./src/routes/withdraw.routes');
-const authRoutes = require('./src/routes/auth.routes'); // ✅ make sure path is correct
+const authRoutes = require('./src/routes/auth.routes'); 
 
 app.use('/api', authRoutes); // ✅ This will enable /api/login and /api/register
 
 app.use('/api/admin', adminRoutes);
-app.use('/api/user', userRoutes);
+app.use('/api', userRoutes);
 app.use('/api/wallet', walletRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/withdraw', withdrawRoutes);
