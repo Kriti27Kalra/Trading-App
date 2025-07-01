@@ -13,78 +13,84 @@ const Register = () => {
 
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false); // Add loading state
+const ENABLE_LOGS = process.env.REACT_APP_ENABLE_LOGS === 'true';
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError('');
 
-    // Basic frontend validation
-    if (!firstName.trim()) {
-      alert('First name is required');
-      return;
-    }
-
-    if (!email.trim()) {
-      alert('Email is required');
-      return;
-    }
-
-    if (!password) {
-      alert('Password is required');
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      alert('Passwords do not match');
-      return;
-    }
-    if (!referredByCode.trim()) {
-  alert('Refer Code is required');
-  return;
-}
-
-
-    setLoading(true); // Set loading to true when the registration starts
-
-    try {
-const baseURL = process.env.REACT_APP_API_URL;
-
-const response = await axios.post(`${baseURL}/register`, {        
-        firstName,
-        lastName, // can be blank
-        email,
-        password,
-        confirmPassword, // Send confirmPassword to backend as well
-         referred_by_code: referredByCode,
-      
-      });
-
-      if (response.status === 201) {
-        alert('Registration successful!');
-        navigate('/login');
-      }
-    } catch (err) {
-      // Check for backend validation errors
-      if (err.response && err.response.status === 409) {
-        alert('Email already exists. Please use a different one.');
-      } else if (err.response && err.response.data.message) {
-  const message = err.response.data.message;
-
-  if (message === 'Invalid Refer Code') {
-    alert('Invalid Refer Code');
-  } else {
-    setError(message); // Still show other messages in the form if needed
+  if (!firstName.trim()) {
+    alert('First name is required');
+    return;
   }
-}
+  if (!email.trim()) {
+    alert('Email is required');
+    return;
+  }
+  if (!password) {
+    alert('Password is required');
+    return;
+  }
+  if (password !== confirmPassword) {
+    alert('Passwords do not match');
+    return;
+  }
+  if (!referredByCode.trim()) {
+    alert('Refer Code is required');
+    return;
+  }
 
-       else {
-        console.error(err);
-        setError('Registration failed. Please try again.');
-      }
-    } finally {
-      setLoading(false); // Set loading to false when the request completes
+  setLoading(true);
+
+  try {
+    const baseURL = process.env.REACT_APP_API_URL;
+    const payload = {
+      firstName,
+      lastName,
+      email,
+      password,
+      confirmPassword,
+      referred_by_code: referredByCode,
+    };
+
+    if (ENABLE_LOGS) {
+      console.log("➡️ Submitting registration to:", `${baseURL}/register`);
+      console.log("🧾 Payload:", payload);
     }
-  };
+
+    const response = await axios.post(`${baseURL}/register`, payload);
+
+    if (ENABLE_LOGS) {
+      console.log("✅ Server Response:", response);
+    }
+
+    if (response.status === 201) {
+      alert('Registration successful!');
+      navigate('/login');
+    }
+  } catch (err) {
+    if (ENABLE_LOGS) {
+      console.error("❌ Error:", err);
+    }
+
+    if (err.response?.status === 409) {
+      alert('Email already exists. Please use a different one.');
+    } else if (err.response?.data?.message) {
+      const message = err.response.data.message;
+
+      if (message === 'Invalid Refer Code') {
+        alert('Invalid Refer Code');
+      } else {
+        setError(message);
+      }
+    } else {
+      setError('Registration failed. Please try again.');
+    }
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <>
